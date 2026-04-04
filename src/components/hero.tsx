@@ -148,13 +148,13 @@ export function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-2xl overflow-hidden border-2 border-[#2d464b] shadow-xl shadow-black/20">
+            <div className="w-48 md:w-56 lg:w-64 rounded-2xl overflow-hidden border-2 border-[#2d464b] shadow-xl shadow-black/20 bg-[#0d1e21]">
               <Image
                 src="/garrett-headshot.png"
                 alt="Garrett Lisowski"
                 width={256}
-                height={256}
-                className="w-full h-full object-cover"
+                height={320}
+                className="w-full h-auto"
                 priority
               />
             </div>
