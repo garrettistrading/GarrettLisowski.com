@@ -1,7 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap } from "lucide-react";
+import {
+  GraduationCap,
+  Swords,
+  Mountain,
+  Dumbbell,
+  TrendingUp,
+  Brain,
+  Building2,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 /* ── Data ─────────────────────────────────────────────────────── */
 
@@ -24,20 +33,20 @@ const principles = [
   },
 ];
 
-const interests = [
-  "MMA",
-  "Skiing",
-  "Weightlifting",
-  "Quant Trading",
-  "AI/ML",
-  "Commercial Real Estate",
+const interests: { label: string; icon: LucideIcon }[] = [
+  { label: "MMA", icon: Swords },
+  { label: "Skiing", icon: Mountain },
+  { label: "Weightlifting", icon: Dumbbell },
+  { label: "Quant Trading", icon: TrendingUp },
+  { label: "AI / ML", icon: Brain },
+  { label: "Commercial Real Estate", icon: Building2 },
 ];
 
 /* ── About section ────────────────────────────────────────────── */
 
 export function About() {
   return (
-    <section id="about" className="py-24 md:py-32">
+    <section id="about" className="py-14 md:py-20">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -55,7 +64,7 @@ export function About() {
 
         {/* Prose */}
         <motion.p
-          className="mt-10 text-base md:text-lg text-[#899da0] font-light leading-relaxed max-w-3xl"
+          className="mt-8 text-base md:text-lg text-[#899da0] font-light leading-relaxed max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -71,7 +80,7 @@ export function About() {
 
         {/* Education callout */}
         <motion.div
-          className="mt-8 flex items-start gap-4 p-6 rounded-xl border border-[#2d464b]/40 bg-[#2d464b]/10 max-w-3xl"
+          className="mt-6 flex items-start gap-4 p-5 rounded-xl border border-[#2d464b]/40 bg-[#2d464b]/10 max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -93,11 +102,11 @@ export function About() {
         </motion.div>
 
         {/* Operating principles */}
-        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {principles.map((p, i) => (
             <motion.div
               key={i}
-              className="p-6 rounded-xl border border-[#2d464b]/40 bg-[#0d1e21]"
+              className="p-5 rounded-xl border border-[#2d464b]/40 bg-[#0d1e21]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -113,27 +122,37 @@ export function About() {
           ))}
         </div>
 
-        {/* Interests */}
+        {/* Interests — icon pill cards */}
         <motion.div
-          className="mt-12 flex flex-wrap items-center gap-x-4 gap-y-2"
+          className="mt-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <span className="text-xs text-[#899da0]/40 font-medium uppercase tracking-wider mr-2">
+          <p className="text-xs text-[#899da0]/40 font-medium uppercase tracking-[0.2em] mb-4">
             Off the clock
-          </span>
-          {interests.map((item, i) => (
-            <span key={i} className="flex items-center gap-4">
-              <span className="text-xs text-[#899da0]/50 font-light">
-                {item}
-              </span>
-              {i < interests.length - 1 && (
-                <span className="text-[#2d464b] text-[8px]">&#x2022;</span>
-              )}
-            </span>
-          ))}
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {interests.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={i}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#2d464b]/50 bg-[#2d464b]/10 hover:border-[#899da0]/30 hover:bg-[#2d464b]/20 transition-all duration-300"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.25 + i * 0.06 }}
+                >
+                  <Icon className="w-3.5 h-3.5 text-[#899da0]" strokeWidth={1.5} />
+                  <span className="text-xs text-[#899da0] font-medium">
+                    {item.label}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </div>
         </motion.div>
       </div>
     </section>

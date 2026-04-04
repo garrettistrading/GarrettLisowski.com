@@ -91,7 +91,7 @@ function CountUp({
 
 export function Metrics() {
   return (
-    <section id="metrics" className="py-24 md:py-32">
+    <section id="metrics" className="py-14 md:py-20">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -107,7 +107,7 @@ export function Metrics() {
           </h2>
         </motion.div>
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8 md:gap-x-16">
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-y-8 gap-x-8 md:gap-x-16">
           {stats.map((stat, i) => (
             <motion.div
               key={i}

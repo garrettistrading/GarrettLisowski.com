@@ -27,7 +27,7 @@ const cards = [
 
 export function Positioning() {
   return (
-    <section className="py-24 md:py-32">
+    <section className="py-14 md:py-20">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -43,23 +43,23 @@ export function Positioning() {
           </h2>
         </motion.div>
 
-        <div className="mt-16 grid md:grid-cols-3 gap-6">
+        <div className="mt-10 grid md:grid-cols-3 gap-5">
           {cards.map((card, i) => {
             const Icon = card.icon;
             return (
               <motion.div
                 key={i}
-                className="group p-8 rounded-xl border border-[#2d464b]/50 bg-[#0d1e21] hover:border-[#899da0]/30 hover:bg-[#122a2e] transition-all duration-300"
+                className="group p-7 rounded-xl border border-[#2d464b]/50 bg-[#0d1e21] hover:border-[#899da0]/30 hover:bg-[#122a2e] transition-all duration-300"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
               >
                 <Icon
-                  className="w-6 h-6 text-[#899da0] group-hover:text-[#d8e6e8] transition-colors duration-300 mb-5"
+                  className="w-6 h-6 text-[#899da0] group-hover:text-[#d8e6e8] transition-colors duration-300 mb-4"
                   strokeWidth={1.5}
                 />
-                <h3 className="text-lg font-semibold text-[#d8e6e8] mb-3">
+                <h3 className="text-lg font-semibold text-[#d8e6e8] mb-2">
                   {card.title}
                 </h3>
                 <p className="text-sm text-[#899da0] leading-relaxed font-light">
