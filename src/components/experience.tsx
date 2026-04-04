@@ -1,176 +1,153 @@
 "use client";
-import { useState, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
 
-const ease = [0.16, 1, 0.3, 1] as const;
+import { motion } from "framer-motion";
 
-const roles = [
+/* ── Bullet renderer (parses **bold** markers) ────────────────── */
+
+function Bullet({ text }: { text: string }) {
+  const parts = text.split(/\*\*(.*?)\*\*/g);
+  return (
+    <li className="text-sm text-[#899da0] font-light leading-relaxed pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[9px] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#2d464b]">
+      {parts.map((part, i) =>
+        i % 2 === 1 ? (
+          <span key={i} className="text-white font-medium">
+            {part}
+          </span>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </li>
+  );
+}
+
+/* ── Data ─────────────────────────────────────────────────────── */
+
+const jobs = [
   {
-    co: "Ingram Micro",
-    ti: "Account Executive",
-    loc: "Buffalo, NY",
-    dt: "2025\u20132026",
-    hi: "150+ Accounts \u00b7 $300K Quota",
-    b: [
-      "Owned the full sales cycle across a portfolio of 150+ commercial and enterprise accounts against a $300K quota, building trusted relationships with key decision-makers to identify needs and drive SaaS and software solution adoption.",
-      "Managed pipeline systematically and forecasted revenue on a monthly and quarterly basis, reconciling projections against actuals to deliver accurate sales reporting to leadership.",
-      "Collaborated cross-functionally with partner managers, solution engineers, and operations teams to streamline the sales process, reducing billing discrepancies and accelerating deal velocity through data-driven account planning.",
+    company: "Ingram Micro",
+    role: "Account Executive",
+    location: "Buffalo, NY",
+    dates: "Aug 2025 \u2013 Mar 2026",
+    bullets: [
+      "Owned full sales cycle across **150+ commercial and enterprise accounts** against a **$300K quota**",
+      "Built trusted relationships with decision-makers to drive SaaS and software solution adoption",
+      "Managed pipeline and forecasted revenue monthly/quarterly, reconciling projections vs. actuals",
+      "Collaborated cross-functionally with partner managers, solution engineers, and ops to accelerate deal velocity",
     ],
   },
   {
-    co: "Odoo",
-    ti: "Business Development Representative",
-    loc: "Buffalo, NY",
-    dt: "2025",
-    hi: "$240K Pipeline \u00b7 25% Growth",
-    b: [
-      "Generated $240K in pipeline by prospecting and nurturing 20+ commercial and enterprise accounts within Odoo\u2019s SaaS platform, executing high-velocity outreach and growing revenue per account by 25% through consultative upselling.",
-      "Conducted 30+ screen-share demos per quarter at a 7% close rate, communicating business value of software solutions to key stakeholders and driving a 90% client satisfaction rate while reducing churn risk.",
-      "Partnered cross-functionally with implementation and product teams to engineer custom onboarding configurations, cutting time-to-value by 15%.",
+    company: "Odoo",
+    role: "Business Development Representative",
+    location: "Buffalo, NY",
+    dates: "Mar 2025 \u2013 Jun 2025",
+    bullets: [
+      "Generated **$240K in pipeline** across **20+ commercial/enterprise** SaaS accounts",
+      "Executed high-velocity outreach: **40\u201380 calls** and **50\u2013100 emails** daily",
+      "Conducted **30+ demos/quarter** at **7% close rate** with **90% client satisfaction**",
+      "Grew revenue per account by **25%** through consultative upselling",
+      "Cut client time-to-value by **15%** through custom onboarding configurations",
     ],
   },
   {
-    co: "Tyler Cole Agency",
-    ti: "Financial Analyst",
-    loc: "Remote",
-    dt: "2024\u20132025",
-    hi: "80% YoY Gains",
-    b: [
-      "Built time-series trend models across equities, fixed income, digital commodities, and physical commodities to support investment decision-making and deliver actionable insights.",
-      "Co-developed a back-tested trading strategy for gold, oil, and Bitcoin that generated 80% YoY gains across two full liquidity cycles.",
-      "Delivered weekly 1:1 data briefings to the agency founder covering model outputs, market positioning, and strategic observations.",
+    company: "Tyler Cole Agency",
+    role: "Financial Analyst",
+    location: "Remote",
+    dates: "Aug 2024 \u2013 Apr 2025",
+    bullets: [
+      "Built time-series trend models across equities, fixed income, and commodities",
+      "Co-developed a back-tested strategy for gold, oil, and Bitcoin \u2014 **80% YoY gains** across two liquidity cycles",
+      "Delivered weekly 1:1 data briefings to the agency founder on market positioning and strategy",
     ],
   },
   {
-    co: "B&H Polymers",
-    ti: "Sales Executive",
-    loc: "Remote",
-    dt: "2022\u20132023",
-    hi: "$500K+ Revenue \u00b7 97% A/R",
-    b: [
-      "Drove over $500K in revenue within 12 months by managing the full sales cycle \u2014 prospecting, delivering consultative product presentations, and closing new business while retaining and expanding existing accounts.",
-      "Managed all NAMER accounts end-to-end, negotiating pricing with airline and logistics partners, preparing competitive quote bids, and analyzing trade files to surface high-value opportunities.",
-      "Improved accounts receivable efficiency by 97% and oversaw P&L reporting, customer invoicing, and export customs clearance for international markets.",
+    company: "B&H Polymers Inc.",
+    role: "Sales Executive",
+    location: "Remote",
+    dates: "May 2022 \u2013 Jul 2023",
+    bullets: [
+      "Drove **$500K+ in revenue** within 12 months via full-cycle sales: prospecting, presentations, closing, and account expansion",
+      "Managed all NAMER accounts end-to-end \u2014 negotiation, quoting, trade analysis",
+      "Improved AR efficiency by **97%**; oversaw P&L, invoicing, and international export compliance",
     ],
   },
   {
-    co: "SFIN Media",
-    ti: "Co-Founder",
-    loc: "Remote",
-    dt: "2019\u20132022",
-    hi: "35% CAC Reduction",
-    b: [
-      "Co-founded digital marketing agency, generating 30% more inbound leads through optimized conversion funnels and creative outreach strategies.",
-      "Built end-to-end CRM automation that cut lead response time from 24 hours to 5 minutes, increasing close rates by 10%.",
-      "Reduced client customer acquisition cost by 35% via precise audience segmentation and targeted ad refinements.",
+    company: "SFIN Media",
+    role: "Co-Founder",
+    location: "Remote",
+    dates: "May 2019 \u2013 Aug 2022",
+    bullets: [
+      "Co-founded digital marketing agency; generated **30% more inbound leads** through optimized conversion funnels",
+      "Built CRM automation cutting lead response time from **24 hours to 5 minutes** (+10% close rate)",
+      "Reduced client CAC by **35%** through audience segmentation and ad strategy",
     ],
   },
 ];
 
-function Row({ r, i }: { r: (typeof roles)[0]; i: number }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-30px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : {}}
-      transition={{ duration: 0.7, delay: i * 0.06, ease }}
-    >
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full text-left group border-t border-white/[0.06] hover:border-white/[0.1] transition-colors duration-200"
-      >
-        <div className="py-5 lg:py-6 grid grid-cols-12 items-baseline gap-x-4">
-          <span className="col-span-1 hidden lg:block text-[10px] font-mono text-[#2A2A36]">
-            {String(i + 1).padStart(2, "0")}
-          </span>
-          <div className="col-span-12 sm:col-span-4 lg:col-span-3">
-            <h3 className="text-[clamp(1rem,2vw,1.35rem)] font-semibold tracking-[-0.02em] text-[#C8C6BE] group-hover:text-[#7B6BFF] transition-colors duration-200">
-              {r.co}
-            </h3>
-          </div>
-          <div className="col-span-6 sm:col-span-3 lg:col-span-3 mt-1 sm:mt-0">
-            <p className="text-[12px] text-[#5A5A68]">{r.ti}</p>
-            <p className="text-[10px] font-mono text-[#7B6BFF]/30 mt-0.5 group-hover:text-[#7B6BFF]/50 transition-colors duration-200">
-              {r.hi}
-            </p>
-          </div>
-          <div className="col-span-5 sm:col-span-3 lg:col-span-3 text-right mt-1 sm:mt-0">
-            <span className="text-[11px] font-mono text-[#3A3A46]">{r.dt}</span>
-          </div>
-          <div className="col-span-1 hidden lg:flex justify-end">
-            <span
-              className={`text-[14px] text-[#3A3A46] group-hover:text-[#7B6BFF]/50 transition-all duration-200 ${
-                open ? "rotate-45" : ""
-              }`}
-            >
-              +
-            </span>
-          </div>
-        </div>
-      </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease }}
-            className="overflow-hidden"
-          >
-            <div className="pb-7 lg:pl-[8.333%]">
-              <ul className="max-w-2xl space-y-4">
-                {r.b.map((b, j) => (
-                  <li
-                    key={j}
-                    className="text-[13px] text-[#6A6A78] leading-[1.85] pl-4 relative before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-px before:bg-[#7B6BFF]/20"
-                  >
-                    {b}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-3 text-[10px] text-[#2A2A36] font-mono">{r.loc}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-}
+/* ── Experience section ───────────────────────────────────────── */
 
 export function Experience() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-
   return (
-    <section
-      id="experience"
-      ref={ref}
-      className="relative min-h-screen py-24 lg:py-36"
-    >
-      <div className="mx-auto max-w-[1400px] px-7 sm:px-10 lg:px-14">
+    <section id="experience" className="py-24 md:py-32">
+      <div className="max-w-6xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, ease }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
         >
-          <p className="text-[9px] tracking-[0.6em] uppercase text-[#7B6BFF]/50 font-mono">
-            02 / Experience
+          <p className="text-xs font-medium text-[#899da0] tracking-[0.2em] uppercase mb-3">
+            Career
           </p>
-          <h2 className="mt-8 lg:mt-10 mb-14 lg:mb-16 text-[clamp(2rem,5vw,3.8rem)] font-bold tracking-[-0.04em] text-[#F0EEE8] leading-[1.05]">
-            Where I&rsquo;ve{" "}
-            <span className="text-[#5A5A68]">delivered</span>
-            <span className="text-[#7B6BFF]">.</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#d8e6e8]">
+            Where I&rsquo;ve delivered.
           </h2>
         </motion.div>
-        <div>
-          {roles.map((r, i) => (
-            <Row key={r.co} r={r} i={i} />
-          ))}
-          <div className="border-t border-white/[0.06]" />
+
+        <div className="mt-16 relative">
+          {/* Timeline line */}
+          <div className="absolute left-0 md:left-[200px] top-0 bottom-0 w-px bg-[#2d464b]/50 hidden md:block" />
+
+          <div className="space-y-12 md:space-y-16">
+            {jobs.map((job, i) => (
+              <motion.div
+                key={i}
+                className="relative md:grid md:grid-cols-[200px_1fr] md:gap-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                {/* Timeline dot */}
+                <div className="hidden md:block absolute left-[200px] top-1 w-2.5 h-2.5 -translate-x-[5px] rounded-full bg-[#2d464b] border-2 border-[#0d1e21]" />
+
+                {/* Date column */}
+                <div className="mb-4 md:mb-0 md:text-right md:pr-4">
+                  <div className="text-xs text-[#899da0] font-medium tracking-wide">
+                    {job.dates}
+                  </div>
+                  <div className="text-xs text-[#899da0]/40 font-light mt-0.5">
+                    {job.location}
+                  </div>
+                </div>
+
+                {/* Details column */}
+                <div className="md:pl-8">
+                  <h3 className="text-lg font-semibold text-[#d8e6e8]">
+                    {job.company}
+                  </h3>
+                  <p className="text-sm text-[#899da0] font-medium mt-0.5">
+                    {job.role}
+                  </p>
+                  <ul className="mt-4 space-y-2.5">
+                    {job.bullets.map((bullet, j) => (
+                      <Bullet key={j} text={bullet} />
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,24 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
+});
 
 export const metadata: Metadata = {
-  title: "Garrett Lisowski — Revenue. Reimagined.",
-  description: "High-performance sales professional with analytical depth.",
+  title: "Garrett Lisowski — Sales Execution Meets Analytical Precision",
+  description:
+    "Account Executive with a track record across SaaS, manufacturing, and financial services. Full-cycle sales execution with an economics-trained, data-driven approach to growth.",
+  openGraph: {
+    title: "Garrett Lisowski",
+    description: "I turn pipeline into revenue.",
+    type: "website",
+  },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
-      <body className="bg-[#0D0D10] text-[#F0EEE8] overflow-hidden">
-        <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark" disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
-      </body>
+    <html lang="en" className={`${poppins.variable} dark antialiased`}>
+      <body className="bg-[#0d1e21] text-[#d8e6e8]">{children}</body>
     </html>
   );
 }
