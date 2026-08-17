@@ -1,6 +1,5 @@
 import {
   ArrowDown,
-  ArrowRight,
   ArrowUpRight,
   Calculator,
   ChartLineUp,
@@ -9,9 +8,9 @@ import {
   MapPin,
   PresentationChart,
 } from "@phosphor-icons/react/dist/ssr";
+import Image from "next/image";
 import Link from "next/link";
 import { CareerTimeline } from "@/components/CareerTimeline";
-import { HeroSystem } from "@/components/HeroSystem";
 import { Navigation } from "@/components/Navigation";
 import { ProjectVisual } from "@/components/ProjectVisual";
 import { ScrollReveals } from "@/components/ScrollReveals";
@@ -48,30 +47,29 @@ export default function Home() {
       <ScrollReveals />
 
       <div id="content">
-        <section className="portfolio-hero">
+        <section className="portfolio-hero candidate-hero">
           <div className="hero-statement">
-            <p className="intro-line">Investment research · Financial analysis · Strategy</p>
-            <h1>Financial analysis for clearer investment and operating decisions.</h1>
+            <p className="intro-line">Financial Analyst · Investment Research · Strategy</p>
+            <h1>Garrett Lisowski</h1>
             <p className="hero-support">
-              I build models, test market signals, and turn complex data into decision-ready research, forecasts, and reporting.
+              I turn complex financial and market data into clear models, research, and reporting that support better decisions.
             </p>
             <div className="hero-cta-row">
               <a className="primary-action" href="#experience">
-                Review experience
+                View experience
                 <ArrowDown size={18} weight="bold" aria-hidden="true" />
-              </a>
-              <a className="text-action" href="#contact">
-                Email Garrett
-                <ArrowRight size={18} weight="bold" aria-hidden="true" />
               </a>
             </div>
           </div>
-          <HeroSystem />
-          <div className="hero-evidence" aria-label="Selected evidence">
-            <div><strong>3.78</strong><span>Economics GPA</span></div>
-            <div><strong>150+</strong><span>Commercial and enterprise accounts managed</span></div>
-            <div><strong>100+</strong><span>Equities covered in investment-committee research</span></div>
-          </div>
+          <figure className="hero-portrait">
+            <Image
+              src="/assets/garrett-lisowski-headshot.png"
+              alt="Garrett Lisowski"
+              width={400}
+              height={400}
+              priority
+            />
+          </figure>
         </section>
 
         <section className="experience-section" id="experience">
@@ -82,6 +80,11 @@ export default function Home() {
               Select a role to review the work, scope, and measured outcomes.
             </span>
           </header>
+          <div className="experience-evidence" aria-label="Selected evidence" data-reveal>
+            <div><strong>3.78</strong><span>Economics GPA</span></div>
+            <div><strong>150+</strong><span>Commercial and enterprise accounts managed</span></div>
+            <div><strong>100+</strong><span>Equities covered in investment-committee research</span></div>
+          </div>
           <CareerTimeline />
         </section>
 
@@ -124,6 +127,9 @@ export default function Home() {
           <header className="capability-heading" data-reveal>
             <p>What I bring</p>
             <h2 id="capability-title">Analysis that holds up in the room.</h2>
+            <span className="capability-support">
+              Financial analysis for clearer investment and operating decisions, grounded in modeling, research, reporting, and commercial judgment.
+            </span>
           </header>
           <div className="capability-grid">
             {candidateProof.map((item) => {

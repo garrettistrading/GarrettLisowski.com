@@ -1,26 +1,39 @@
 import type { VisualType } from "@/lib/portfolio";
+import { ResearchGauge } from "@/components/ResearchGauge";
 
 type ProjectVisualProps = { type: VisualType; detail?: boolean };
 
-const mtpiSeries = [0.15, 0.59, 0.37, -0.36, 0.07, 0.2, 0.69, 0.69, 0.69, 0.69, 0.69, 0.82, 0.82, 0.82, 0.82, 0.82, 0.82, 0.72, 0.5, 0.12, -0.78, -0.91, -0.91, -0.91];
+const mtpiPreviewRows = [
+  ["Perpetual", "EWMA", "3D", "−1.00", "Bearish"],
+  ["Perpetual", "SALMA RED K", "3D", "−1.00", "Bearish"],
+  ["Perpetual", "Michaels EMA", "2D", "−1.00", "Bearish"],
+  ["Oscillators", "Regularized MA suite", "2D", "−1.00", "Bearish"],
+  ["Oscillators", "Normalized KAMA", "4D", "−1.00", "Bearish"],
+  ["Bitcoin", "T3S", "5D", "−1.00", "Bearish"],
+  ["Ethereum", "EWMA", "4D", "−1.00", "Bearish"],
+  ["Macro", "Correlation coefficient", "15–120D", "0.28", "Slight bull"],
+];
 
-function mtpiPath(width = 600, height = 188) {
-  return mtpiSeries.map((score, index) => {
-    const x = 34 + (index / (mtpiSeries.length - 1)) * (width - 52);
-    const y = 12 + ((1 - score) / 2) * (height - 28);
-    return `${index === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`;
-  }).join(" ");
-}
-
-const mtpiGroups = [
-  ["Perpetual", "Bearish", "−1.00"],
-  ["Oscillators", "Bearish", "−1.00"],
-  ["Bitcoin", "Bearish", "−1.00"],
-  ["Ethereum", "Bearish", "−1.00"],
-  ["Correlations", "Slight bull", "0.28"],
+const mtpiDetailRows = [
+  ["Perpetual", "EWMA", "3D", "−1.00", "Bearish"],
+  ["Perpetual", "SALMA RED K", "3D", "−1.00", "Bearish"],
+  ["Perpetual", "Michaels EMA", "2D", "−1.00", "Bearish"],
+  ["Perpetual", "HSMA", "4D", "−1.00", "Bearish"],
+  ["Perpetual", "T3 Striped [Loxx]", "4D", "−1.00", "Bearish"],
+  ["Oscillators", "Regularized MA suite", "2D", "−1.00", "Bearish"],
+  ["Oscillators", "Normalized KAMA", "4D", "−1.00", "Bearish"],
+  ["Oscillators", "Sebastine Trend Catcher", "2D", "−1.00", "Bearish"],
+  ["Oscillators", "Kalman Hull RSI", "3D", "−1.00", "Bearish"],
+  ["Oscillators", "Trend Following MA’s", "3D", "−1.00", "Bearish"],
+  ["Bitcoin", "T3S", "5D", "−1.00", "Bearish"],
+  ["Bitcoin", "Michaels EMA", "4D", "−1.00", "Bearish"],
+  ["Ethereum", "Michaels EMA", "2D", "−1.00", "Bearish"],
+  ["Ethereum", "EWMA", "4D", "−1.00", "Bearish"],
+  ["Macro", "Correlation coefficient", "15–120D", "0.28", "Slight bull"],
 ];
 
 function TrendVisual({ detail }: { detail: boolean }) {
+  const visibleRows = detail ? mtpiDetailRows : mtpiPreviewRows;
   return (
     <div className={`research-visual analyst-workspace trend-workspace ${detail ? "is-detail" : ""}`}>
       <header className="workspace-header">
@@ -28,24 +41,14 @@ function TrendVisual({ detail }: { detail: boolean }) {
         <dl><dt>Snapshot</dt><dd>Jan 17, 2025</dd><dt>Composite</dt><dd className="state-short">−0.91 · Short</dd></dl>
       </header>
 
-      <div className="workspace-chart">
-        <div className="workspace-chart-title"><strong>Forward-test score</strong><span>Jan 05 — Feb 05, 2025</span></div>
-        <svg viewBox="0 0 600 188" role="img" aria-label="MTPI historical forward-test score from January 5 to February 5, 2025">
-          {[12, 52, 92, 132, 172].map((y, index) => <g key={y}><line x1="34" x2="582" y1={y} y2={y} /><text x="0" y={y + 3}>{["1.0", "0.5", "0", "−0.5", "−1.0"][index]}</text></g>)}
-          <path d={mtpiPath()} />
-          {mtpiSeries.map((score, index) => {
-            if (![0, 11, 17, 20, 23].includes(index)) return null;
-            const x = 34 + (index / (mtpiSeries.length - 1)) * 548;
-            const y = 12 + ((1 - score) / 2) * 160;
-            return <circle cx={x} cy={y} r="3.4" key={index}><title>{score.toFixed(2)}</title></circle>;
-          })}
-        </svg>
-        <div className="workspace-x-axis"><span>Jan 05</span><span>Jan 24 · 0.82</span><span>Feb 05 · −0.91</span></div>
+      <div className="mtpi-preview-body">
+        <div className="mtpi-preview-matrix" role="table" aria-label="Selected MTPI indicator matrix rows">
+          <div><span>Category</span><span>Indicator</span><span>Frame</span><span>Score</span><span>Result</span></div>
+          {visibleRows.map(([category, indicator, frame, score, result]) => <div key={`${category}-${indicator}`}><strong className={`preview-category preview-${category.toLowerCase()}`}>{category}</strong><span>{indicator}</span><span>{frame}</span><b>{score}</b><i className={result === "Bearish" ? "state-short" : "state-long"}>{result}</i></div>)}
+        </div>
+        <ResearchGauge compact label="Medium-term trend" score="−0.91" state="Short" />
       </div>
-
-      <div className="workspace-state-strip" aria-label="MTPI category states on January 17, 2025">
-        {mtpiGroups.map(([group, state, score]) => <div key={group}><span>{group}</span><strong className={state === "Bearish" ? "state-short" : "state-long"}>{state}</strong><small>{score}</small></div>)}
-      </div>
+      <footer className="workspace-summary"><span>15 inputs</span><span>5 categories</span><strong>Average −0.91 · Short</strong></footer>
     </div>
   );
 }
@@ -64,22 +67,24 @@ function RelativeStrengthVisual({ detail }: { detail: boolean }) {
         <dl><dt>Snapshot</dt><dd>Oct 02, 2024</dd><dt>Horizon</dt><dd>2D</dd></dl>
       </header>
 
-      <div className="pairwise-snapshot">
+      <div className="rsps-preview-body">
+        <div className="pairwise-snapshot">
         <div className="pairwise-snapshot-head"><span>Pair</span><span>Inputs</span><span>Frame</span><span>Average</span><span>State</span></div>
         {pairwiseSnapshot.map(([pair, inputs, frame, average, state]) => (
           <div key={pair}><strong>{pair}</strong><span>{inputs}</span><span>{frame}</span><span>{average}</span><i className={state === "Long" ? "state-long" : "state-short"}>{state}</i></div>
         ))}
+        </div>
+        <div className="mini-workstation-chart">
+          <header><strong>ETH/BTC normalized view</strong><span>2017 — 2024</span></header>
+          <svg viewBox="0 0 420 150" role="img" aria-label="Normalized historical ETH/BTC research trace with model-state markers">
+            {[22, 62, 102, 142].map((y) => <line x1="20" x2="410" y1={y} y2={y} key={y} />)}
+            <path d="M20 38 L33 70 L48 50 L63 75 L79 68 L95 89 L112 103 L130 116 L148 125 L168 113 L188 98 L207 76 L226 88 L245 70 L264 50 L282 67 L300 64 L320 76 L340 69 L361 78 L383 82 L410 91" />
+            {[54, 92, 138, 184, 233, 278, 326, 371].map((x, index) => <line className={index % 3 === 0 ? "marker-positive" : "marker-negative"} x1={x} x2={x} y1="22" y2="142" key={x} />)}
+          </svg>
+          <footer><span>2017</span><span>2020</span><span>2022</span><span>2024</span></footer>
+        </div>
       </div>
-
-      <div className="allocation-workflow" aria-label="Five-stage RSPS decision workflow">
-        {[
-          ["01", "Market regime", "TOTAL trend"],
-          ["02", "Major allocation", "ETH / BTC"],
-          ["03", "Speculative strength", "SOL pairs"],
-          ["04", "Small-cap budget", "OTHERS.D"],
-          ["05", "Candidate screen", "Cap · trend · beta"],
-        ].map(([number, title, detailText]) => <div key={number}><small>{number}</small><strong>{title}</strong><span>{detailText}</span></div>)}
-      </div>
+      <footer className="workspace-summary"><span>3 pairwise models</span><span>2D horizon</span><strong>5-stage decision path</strong></footer>
     </div>
   );
 }
