@@ -143,33 +143,25 @@ ul { margin: 0; padding: 0; }
 .mobile-navigation { display: none; }
 
 .portfolio-hero {
-  align-items: center;
+  align-items: stretch;
   display: grid;
-  gap: clamp(34px, 5vw, 72px);
-  grid-template-columns: minmax(0, 1.16fr) minmax(340px, 0.84fr);
+  gap: 0;
+  grid-template-columns: clamp(440px, 41vw, 592px) minmax(0, 1fr);
   isolation: isolate;
-  margin: 0 auto;
-  min-height: 780px;
-  padding: 148px 0 88px;
+  min-height: 760px;
+  padding: 116px 0 0;
   position: relative;
-  width: var(--container);
+  width: 100%;
 }
 
-.candidate-hero::before {
-  background:
-    radial-gradient(ellipse 46% 74% at 78% 46%, rgba(0, 113, 227, .16), transparent 72%),
-    linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(245, 249, 253, .72) 32%, rgba(224, 238, 252, .78) 73%, rgba(250, 252, 255, .34) 100%);
-  border-bottom: 1px solid rgba(0, 102, 204, .09);
-  border-top: 1px solid rgba(0, 102, 204, .07);
-  clip-path: polygon(0 7%, 100% 0, 100% 92%, 0 100%);
-  content: "";
-  inset: 188px -42px 74px -42px;
-  pointer-events: none;
-  position: absolute;
-  z-index: -1;
+.hero-statement {
+  align-self: center;
+  margin-left: -72px;
+  max-width: 820px;
+  padding: 70px clamp(48px, 7vw, 112px) 70px clamp(34px, 4vw, 64px);
+  position: relative;
+  z-index: 2;
 }
-
-.hero-statement { align-self: center; max-width: 720px; padding: 36px 0; position: relative; z-index: 1; }
 
 .intro-line,
 .portfolio-section-heading > p,
@@ -215,47 +207,38 @@ ul { margin: 0; padding: 0; }
 .hero-cta-row { align-items: center; display: flex; gap: 26px; margin-top: 38px; }
 
 .hero-portrait {
-  justify-self: end;
+  align-self: stretch;
+  justify-self: stretch;
   margin: 0;
-  max-width: 438px;
+  min-height: 644px;
   position: relative;
   width: 100%;
   z-index: 1;
 }
 
-.hero-portrait::before {
-  background: rgba(242, 247, 252, .84);
-  border: 1px solid rgba(0, 102, 204, .14);
-  content: "";
-  inset: 22px -20px -20px 22px;
-  position: absolute;
-}
-
 .hero-portrait::after {
-  background: linear-gradient(90deg, rgba(0, 102, 204, 0), rgba(0, 102, 204, .42));
+  background: linear-gradient(90deg, transparent 52%, rgba(255, 255, 255, .08) 62%, rgba(255, 255, 255, .58) 82%, #ffffff 100%);
   content: "";
-  height: 1px;
+  inset: 0;
+  pointer-events: none;
   position: absolute;
-  right: calc(100% + 18px);
-  top: 51%;
-  width: clamp(52px, 8vw, 112px);
 }
 
 .hero-portrait-frame {
-  aspect-ratio: 1;
-  background: #e8f0f5;
-  border: 1px solid rgba(0, 0, 0, .12);
+  height: 100%;
+  min-height: 644px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 34px 76px rgba(10, 55, 92, .14);
 }
 
 .hero-portrait-frame img {
   display: block;
-  height: auto;
-  max-width: none;
-  transform: translate(-15.25%, -15.25%);
-  width: 144%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 34%;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 56%, rgba(0, 0, 0, .88) 69%, rgba(0, 0, 0, .34) 86%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 56%, rgba(0, 0, 0, .88) 69%, rgba(0, 0, 0, .34) 86%, transparent 100%);
 }
 
 .primary-action,
@@ -1363,7 +1346,8 @@ ul { margin: 0; padding: 0; }
 @media (max-width: 1080px) {
   :root { --container: min(100% - 56px, 1100px); }
   .desktop-nav-links { gap: 20px; }
-  .portfolio-hero { gap: 42px; grid-template-columns: 1fr 0.78fr; }
+  .portfolio-hero { grid-template-columns: clamp(440px, 43vw, 500px) minmax(0, 1fr); }
+  .hero-statement { margin-left: -60px; padding-left: 34px; padding-right: 40px; }
   .hero-analysis { min-height: 480px; }
   .project-feature,
   .project-feature-reversed { gap: 5%; grid-template-columns: 1.05fr .95fr; }
@@ -1392,11 +1376,17 @@ ul { margin: 0; padding: 0; }
   .mobile-navigation { background: var(--ink); color: var(--on-dark); display: grid; margin: -1px auto 0; padding: 8px 14px 16px; width: calc(100vw - 24px); }
   .mobile-navigation a { border-top: 1px solid rgba(255,255,255,.14); font-size: 15px; padding: 14px 0; }
 
-  .portfolio-hero { gap: 66px; grid-template-columns: 1fr; min-height: auto; padding: 138px 0 74px; }
-  .candidate-hero::before { clip-path: polygon(0 4%, 100% 0, 100% 95%, 0 100%); inset: 248px -20px 24px; }
+  .portfolio-hero { grid-template-columns: 1fr; min-height: auto; padding: 92px 0 74px; }
   .hero-statement h1 { font-size: clamp(54px, 12vw, 78px); }
-  .hero-portrait { justify-self: center; max-width: 360px; }
-  .hero-portrait::after { background: linear-gradient(180deg, rgba(0, 102, 204, 0), rgba(0, 102, 204, .42)); height: 40px; left: 50%; right: auto; top: -52px; width: 1px; }
+  .hero-statement { margin: -104px auto 0; max-width: 680px; padding: 28px 0 0; width: var(--container); }
+  .hero-portrait,
+  .hero-portrait-frame { min-height: 560px; }
+  .hero-portrait::after { background: linear-gradient(180deg, transparent 54%, rgba(255, 255, 255, .12) 65%, rgba(255, 255, 255, .76) 86%, #ffffff 100%); }
+  .hero-portrait-frame img {
+    object-position: center 30%;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, .86) 72%, rgba(0, 0, 0, .28) 89%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 58%, rgba(0, 0, 0, .86) 72%, rgba(0, 0, 0, .28) 89%, transparent 100%);
+  }
   .hero-analysis { min-height: 490px; }
   .experience-section .portfolio-section-heading { margin-bottom: 58px; }
   .experience-evidence { grid-template-columns: 1fr; margin: 0 0 66px; }
@@ -1488,12 +1478,13 @@ ul { margin: 0; padding: 0; }
   :root { --container: calc(100vw - 32px); }
   body { font-size: 15px; }
   .site-nav .wordmark > span:last-child { display: none; }
-  .portfolio-hero { padding-top: 118px; }
-  .hero-statement h1 { font-size: 52px; }
+  .portfolio-hero { padding-top: 92px; }
+  .hero-statement h1 { font-size: clamp(44px, 12vw, 52px); }
   .hero-support { font-size: 17px; }
   .hero-cta-row { align-items: flex-start; flex-direction: column; gap: 12px; }
-  .hero-portrait { max-width: 300px; }
-  .hero-portrait::before { inset: 14px -12px -12px 14px; }
+  .hero-statement { margin-top: -76px; }
+  .hero-portrait,
+  .hero-portrait-frame { min-height: 480px; }
   .hero-analysis { min-height: 410px; padding: 17px; }
   .hero-analysis svg { margin: 25px 0 12px; }
   .experience-evidence div { align-items: center; }
