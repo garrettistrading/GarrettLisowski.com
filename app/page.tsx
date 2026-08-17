@@ -62,13 +62,15 @@ export default function Home() {
             </div>
           </div>
           <figure className="hero-portrait">
-            <Image
-              src="/assets/garrett-lisowski-headshot.png"
-              alt="Garrett Lisowski"
-              width={400}
-              height={400}
-              priority
-            />
+            <div className="hero-portrait-frame">
+              <Image
+                src="/assets/garrett-lisowski-headshot.png"
+                alt="Garrett Lisowski"
+                width={400}
+                height={400}
+                priority
+              />
+            </div>
           </figure>
         </section>
 
