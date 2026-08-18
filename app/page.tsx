@@ -48,18 +48,6 @@ export default function Home() {
 
       <div id="content">
         <section className="portfolio-hero candidate-hero">
-          <figure className="hero-portrait">
-            <div className="hero-portrait-frame">
-              <Image
-                src="/assets/garrett-lisowski-headshot-portrait.webp"
-                alt="Garrett Lisowski"
-                width={1254}
-                height={1254}
-                priority
-                unoptimized
-              />
-            </div>
-          </figure>
           <div className="hero-statement">
             <p className="intro-line">Financial Analyst · Investment Research · Strategy</p>
             <h1>Garrett Lisowski</h1>
@@ -73,6 +61,18 @@ export default function Home() {
               </a>
             </div>
           </div>
+          <figure className="hero-portrait">
+            <div className="hero-portrait-frame">
+              <Image
+                src="/assets/garrett-lisowski-headshot-portrait.webp"
+                alt="Garrett Lisowski"
+                width={1254}
+                height={1254}
+                priority
+                unoptimized
+              />
+            </div>
+          </figure>
         </section>
 
         <section className="experience-section" id="experience">
