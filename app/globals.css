@@ -606,23 +606,24 @@ ul { margin: 0; padding: 0; }
 .experience-section { padding-bottom: 168px; }
 .experience-section .portfolio-section-heading { margin-bottom: 68px; }
 .experience-section .portfolio-section-heading > span { max-width: 470px; }
-.career-timeline { display: grid; gap: clamp(64px, 7vw, 96px); grid-template-columns: minmax(340px, .82fr) minmax(0, 1.18fr); }
+.career-timeline { display: grid; gap: clamp(72px, 8vw, 112px); grid-template-columns: minmax(320px, .72fr) minmax(0, 1.28fr); }
 .timeline-index { border-top: 1px solid var(--line-strong); display: grid; }
-.timeline-index button { align-items: start; background: transparent; border: 0; border-bottom: 1px solid var(--line); cursor: pointer; display: grid; gap: 3px 18px; grid-template-columns: 112px minmax(0, 1fr); min-height: 78px; padding: 18px 20px 18px 0; text-align: left; transition: background 180ms ease, padding 180ms ease; }
-.timeline-index button:hover { background: linear-gradient(90deg, rgba(0, 102, 204, .045), rgba(0, 102, 204, 0)); padding-left: 10px; }
-.timeline-index button.is-active { background: linear-gradient(90deg, rgba(0, 102, 204, .075), rgba(0, 102, 204, .015)); border-left: 2px solid var(--green); color: var(--ink); padding-left: 16px; }
-.timeline-index button span { color: var(--slate); font-size: 10px; font-variant-numeric: tabular-nums; grid-row: 1 / span 2; letter-spacing: .065em; line-height: 1.45; padding-top: 3px; text-transform: uppercase; }
-.timeline-index button.is-active span { color: var(--green); }
-.timeline-index button strong { font-size: 16px; font-weight: 650; letter-spacing: -.015em; line-height: 1.25; }
-.timeline-index button small { color: var(--slate); font-size: 13px; line-height: 1.35; }
-.timeline-index button.is-active small { color: var(--slate); }
-.timeline-detail { align-self: start; min-height: 500px; padding-top: 2px; }
-.timeline-meta { border-bottom: 1px solid var(--line-strong); color: var(--slate); display: flex; font-size: 11px; font-variant-numeric: tabular-nums; justify-content: space-between; letter-spacing: .075em; padding-bottom: 16px; text-transform: uppercase; }
-.timeline-detail h3 { font-family: var(--sans); font-size: clamp(42px, 4vw, 52px); font-weight: 600; letter-spacing: -.025em; line-height: 1.02; margin: 38px 0 20px; max-width: 720px; text-wrap: balance; }
-.timeline-summary { color: var(--ink-soft); font-size: 18px; line-height: 1.55; margin: 0 0 38px; max-width: 640px; text-wrap: pretty; }
-.timeline-detail ul { border-top: 1px solid var(--line-strong); counter-reset: evidence; list-style: none; }
-.timeline-detail li { border-bottom: 1px solid var(--line); counter-increment: evidence; font-size: 15px; line-height: 1.65; padding: 20px 0 20px 44px; position: relative; text-wrap: pretty; }
-.timeline-detail li::before { color: var(--green-light); content: counter(evidence, decimal-leading-zero); font-size: 10px; font-variant-numeric: tabular-nums; font-weight: 650; left: 1px; letter-spacing: .06em; position: absolute; top: 25px; }
+.timeline-index button { align-items: start; background: transparent; border: 0; border-bottom: 1px solid var(--line); cursor: pointer; display: grid; gap: 5px 18px; grid-template-columns: minmax(0, 1fr) auto; min-height: 84px; padding: 21px 0; text-align: left; transition: color 180ms ease, padding-left 180ms ease; }
+.timeline-index button:hover { color: var(--green); padding-left: 8px; }
+.timeline-index button.is-active { color: var(--ink); padding-left: 14px; }
+.timeline-index button span { color: var(--slate); font-size: 10px; font-variant-numeric: tabular-nums; grid-column: 2; grid-row: 1 / span 2; letter-spacing: .045em; line-height: 1.45; padding-top: 3px; text-align: right; text-transform: uppercase; }
+.timeline-index button strong { font-size: 17px; font-weight: 620; grid-column: 1; letter-spacing: -.018em; line-height: 1.25; }
+.timeline-index button small { color: var(--slate); font-size: 13px; grid-column: 1; line-height: 1.4; }
+.timeline-index button.is-active strong { color: var(--green); }
+.timeline-index button.is-active span { color: var(--ink-soft); }
+.timeline-detail { align-self: start; min-height: 500px; }
+.timeline-meta { align-items: baseline; border-bottom: 1px solid var(--line-strong); color: var(--slate); display: grid; font-size: 11px; font-variant-numeric: tabular-nums; gap: 12px 26px; grid-template-columns: 1fr auto auto; letter-spacing: .055em; padding-bottom: 17px; text-transform: uppercase; }
+.timeline-meta span:first-child { color: var(--ink); font-size: 12px; font-weight: 650; letter-spacing: .025em; }
+.timeline-detail h3 { font-family: var(--sans); font-size: clamp(36px, 3.6vw, 48px); font-weight: 600; letter-spacing: -.027em; line-height: 1.05; margin: 34px 0 18px; max-width: 700px; text-wrap: balance; }
+.timeline-summary { color: var(--ink-soft); font-size: 18px; line-height: 1.58; margin: 0 0 36px; max-width: 610px; text-wrap: pretty; }
+.timeline-detail ul { border-top: 1px solid var(--line-strong); list-style: none; max-width: 680px; }
+.timeline-detail li { border-bottom: 1px solid var(--line); color: var(--ink-soft); font-size: 15px; line-height: 1.65; padding: 21px 0; text-wrap: pretty; }
+.timeline-detail li::before { content: none; }
 
 .background-section { border-top: 1px solid var(--line-strong); padding-top: 130px; }
 .credential-grid { display: grid; gap: 24px; grid-template-columns: .82fr 1.18fr; margin-bottom: 150px; }
@@ -1412,7 +1413,7 @@ ul { margin: 0; padding: 0; }
   .approach-path article { grid-template-columns: 40px 150px 1fr; }
   .career-timeline { gap: 58px; grid-template-columns: 1fr; }
   .timeline-index { grid-template-columns: repeat(2,1fr); }
-  .timeline-index button:nth-child(even) { border-left: 1px solid var(--line); padding-left: 16px; }
+  .timeline-index button:nth-child(even) { border-left: 1px solid var(--line); padding-left: 20px; }
   .timeline-detail { min-height: 0; }
   .credential-grid,
   .skills-story { gap: 54px; grid-template-columns: 1fr; }
@@ -1512,13 +1513,12 @@ ul { margin: 0; padding: 0; }
   .timeline-index { grid-template-columns: 1fr; }
   .timeline-index { display: flex; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-color: rgba(0, 102, 204, .28) transparent; scrollbar-width: thin; }
   .timeline-index button,
-  .timeline-index button:nth-child(even) { border-left: 0; border-right: 1px solid var(--line); flex: 0 0 260px; grid-template-columns: 104px minmax(0, 1fr); min-height: 80px; padding: 17px 18px 17px 0; scroll-snap-align: start; }
+  .timeline-index button:nth-child(even) { border-left: 0; border-right: 1px solid var(--line); flex: 0 0 280px; grid-template-columns: minmax(0, 1fr) auto; min-height: 84px; padding: 18px 20px 18px 0; scroll-snap-align: start; }
   .timeline-index button.is-active,
-  .timeline-index button:nth-child(even).is-active { border-left: 2px solid var(--green); padding-left: 14px; }
-  .timeline-detail h3 { font-size: 40px; margin-top: 30px; }
+  .timeline-index button:nth-child(even).is-active { border-left: 0; padding-left: 12px; }
+  .timeline-detail h3 { font-size: 37px; margin-top: 30px; }
   .timeline-summary { font-size: 17px; margin-bottom: 30px; }
   .timeline-detail li { font-size: 14px; padding-bottom: 18px; padding-top: 18px; }
-  .timeline-detail li::before { top: 23px; }
   .credential-card h3 { font-size: 36px; }
   .skill-groups article { grid-template-columns: 1fr; }
   .contact-section { padding-bottom: 92px; padding-top: 88px; }

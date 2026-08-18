@@ -40,9 +40,9 @@ export function CareerTimeline() {
               }
             }}
           >
+            <strong>{item.role}</strong>
+            <small>{item.organization}</small>
             <span>{item.period}</span>
-            <strong>{item.organization}</strong>
-            <small>{item.role}</small>
           </button>
         ))}
       </div>
@@ -56,6 +56,7 @@ export function CareerTimeline() {
       >
         <div className="timeline-meta">
           <span>{selected.organization}</span>
+          <span>{selected.period}</span>
           <span>{selected.location}</span>
         </div>
         <h3>{selected.role}</h3>
