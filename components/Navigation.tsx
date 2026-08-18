@@ -3,7 +3,7 @@
 import { List, X } from "@phosphor-icons/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const links = [
   { href: "/#experience", label: "Experience" },
@@ -15,6 +15,20 @@ const links = [
 export function Navigation() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setIsOpen(false);
+      menuButton.current?.focus();
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isOpen]);
 
   return (
     <header className="site-header">
@@ -46,6 +60,7 @@ export function Navigation() {
           aria-controls="mobile-navigation"
           aria-expanded={isOpen}
           aria-label={isOpen ? "Close navigation" : "Open navigation"}
+          ref={menuButton}
           onClick={() => setIsOpen((open) => !open)}
         >
           {isOpen ? <X size={21} /> : <List size={21} />}

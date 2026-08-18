@@ -1,4 +1,4 @@
-export type VisualType = "trend" | "relative-strength" | "modeling";
+export type VisualType = "trend" | "relative-strength";
 
 export type Project = {
   slug: string;
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     lessons:
       "A useful research framework does not remove uncertainty. It makes the evidence, context, and limits of a market view easier to examine.",
     disclaimer:
-      "Presented as analytical research. Live signals, proprietary inputs, and trading recommendations are intentionally omitted.",
+      "Presented as analytical research. The indicator matrix is a January 17, 2025 snapshot; the separate testing view continues through February 5, 2025. Live signals, proprietary inputs, and trading recommendations are intentionally omitted.",
   },
   {
     slug: "relative-strength-portfolio-research",
@@ -126,52 +126,7 @@ export const projects: Project[] = [
     lessons:
       "Cross-asset research becomes more useful when every comparison follows the same structure and the planning logic remains inspectable.",
     disclaimer:
-      "Presented as research methodology and portfolio analytics, not personalized financial advice. Historical research states are shown; holdings, balances, and sensitive live strategy details are omitted.",
-  },
-  {
-    slug: "financial-modeling-reporting",
-    name: "Financial Modeling and Reporting",
-    type: "Operating and investment analysis",
-    summary:
-      "Financial analysis work supporting procurement, capital planning, forecasting, and executive decision-making.",
-    role: "Financial modeling, forecasting, reporting, market analysis",
-    tools: ["Microsoft Excel", "Scenario analysis", "Time-series analysis"],
-    outcome:
-      "Decision-ready analysis spanning procurement, capital expenditure, project viability, valuation, and weekly market reporting.",
-    visual: "modeling",
-    proofPoints: ["Excel pricing models", "CAPEX variance reporting", "Scenario and valuation analysis"],
-    challenge:
-      "Procurement, capital planning, project viability, and market research each require different inputs, but leadership still needs a clear and comparable view of assumptions, variance, and risk.",
-    goal:
-      "Build analytical models and reporting workflows that convert operating and financial data into practical decision support.",
-    responsibilities: [
-      "Built Excel pricing models and automated variance reporting for global supply-chain procurement decisions at b+h Polymers.",
-      "Produced actual-versus-budget reporting for capital expenditure and facility expansion initiatives.",
-      "Performed forecasting and scenario analysis to assess international project viability and key return metrics.",
-      "Built time-series and valuation analyses across equities, fixed income, and commodities at Tyler Cole Agency.",
-      "Delivered weekly market recommendations and analytical reporting to leadership.",
-    ],
-    process: [
-      {
-        title: "Define the decision",
-        body: "Started with the operating or investment question, then identified the assumptions and inputs required to answer it.",
-      },
-      {
-        title: "Build the model",
-        body: "Structured pricing, variance, forecast, scenario, time-series, or valuation logic in a format that could be reviewed and updated.",
-      },
-      {
-        title: "Communicate the result",
-        body: "Translated model outputs into reporting that made material variances, scenarios, and implications clear to leadership.",
-      },
-    ],
-    decisions: [
-      "Match the model structure to the decision rather than forcing one template across every analysis.",
-      "Make assumptions and actual-versus-budget variance visible in the reporting layer.",
-      "Present complex analysis in a concise format built for executive review.",
-    ],
-    lessons:
-      "The value of a model depends on more than technical accuracy; its assumptions, outputs, and implications also need to be clear to the people making the decision.",
+      "Presented as a historical research-methodology snapshot, not personalized financial advice. The chart traces reconstruct the source workbook’s visual structure and are not price or performance series. Holdings, balances, and sensitive live strategy details are omitted.",
   },
 ];
 
@@ -210,7 +165,7 @@ export const experience: Experience[] = [
       "Built Excel pricing models and automated variance reporting for global supply-chain procurement.",
       "Produced actual-versus-budget capital-expenditure reports for executive decision-making.",
       "Performed forecasting and scenario analysis for international project viability.",
-      "Conducted B2B outreach across North American, European, and Asian markets, increasing qualified partner inquiries by 80%.",
+      "Conducted B2B outreach across North American, European, and Asian markets; internal reporting showed an 80% increase in qualified partner inquiries during the engagement.",
       "Maintained relationships across the global plastics supply chain.",
     ],
   },
@@ -240,7 +195,7 @@ export const experience: Experience[] = [
     organization: "SFIN Media",
     location: "Remote",
     summary: "CRM automation and conversion workflow development.",
-    evidence: ["Improved conversion rates by 30% and brand visibility by 15% through CRM automation and conversion workflows."],
+    evidence: ["Built CRM automation and conversion workflows; internal reporting attributed a 30% conversion-rate increase to the work."],
   },
   {
     period: "Oct 2018 — Jan 2021",
@@ -263,15 +218,15 @@ export const leadership = {
   organization: "University at Buffalo Student Investors Network",
   role: "Investment Research Vice-President",
   evidence: [
-    "Helped a simulated portfolio outperform the S&P 500 by 12% through sector analysis across more than eight industries.",
-    "Delivered weekly investment-committee research across more than 100 equities using Bloomberg Terminal and FactSet.",
+    "Contributed sector analysis across more than eight industries to a simulated portfolio benchmarked against the S&P 500; team reporting measured 12% relative outperformance.",
+    "Delivered weekly investment-committee research covering more than 100 equities using Bloomberg Terminal and FactSet.",
   ],
 };
 
 export const skillGroups = [
   {
     title: "Analysis",
-    skills: ["Financial modeling", "Investment and market analysis", "Forecasting", "Financial reporting", "Data analysis", "Valuation analysis", "Time-series analysis", "Scenario analysis"],
+    skills: ["Financial modeling", "Investment and market analysis", "Forecasting", "Financial reporting", "Valuation analysis", "Time-series analysis", "Scenario analysis"],
   },
   {
     title: "Tools",
@@ -279,12 +234,12 @@ export const skillGroups = [
   },
   {
     title: "Commercial and operational",
-    skills: ["CRM automation", "Pipeline forecasting", "Client discovery", "Stakeholder communication", "Process improvement"],
+    skills: ["Pipeline forecasting", "Client discovery", "Stakeholder communication", "Process improvement"],
   },
   { title: "Languages", skills: ["English — native", "Spanish — intermediate"] },
   {
     title: "Certifications",
-    skills: ["HubSpot Inbound", "HubSpot Inbound Sales", "HubSpot Frictionless Sales", "HubSpot Revenue Operations", "HubSpot Sales Hub Software", "Microsoft Excel, Pearson Certified"],
+    skills: ["HubSpot Inbound and Sales certifications", "HubSpot Revenue Operations", "Microsoft Excel certification (Pearson)"],
   },
 ];
 

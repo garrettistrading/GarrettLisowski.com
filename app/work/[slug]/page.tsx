@@ -24,10 +24,19 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   return {
     title: `${project.name} case study`,
     description: project.summary,
+    alternates: { canonical: `/work/${project.slug}` },
     openGraph: {
       title: `${project.name} case study | ${profile.name}`,
       description: project.summary,
       type: "article",
+      url: `/work/${project.slug}`,
+      images: [{ url: "/opengraph-image", alt: `${profile.name}, financial analyst` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.name} case study | ${profile.name}`,
+      description: project.summary,
+      images: ["/opengraph-image"],
     },
   };
 }
@@ -39,12 +48,29 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const currentIndex = projects.findIndex((item) => item.slug === project.slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
+  const creativeWorkSchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.name,
+    description: project.summary,
+    url: `https://www.garrettlisowski.com/work/${project.slug}`,
+    author: {
+      "@type": "Person",
+      name: profile.name,
+      url: "https://www.garrettlisowski.com/",
+    },
+    keywords: project.tools.join(", "),
+  };
 
   return (
     <main className="case-main">
       <a className="skip-link" href="#case-content">Skip to case study</a>
       <Navigation />
       <ScrollReveals />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkSchema) }}
+      />
 
       <article id="case-content">
         <header className="case-hero">
@@ -76,8 +102,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <CaseEvidence type={project.visual} />
 
         <section className="case-framing" data-reveal>
-          <div><p>The challenge</p><h2>{project.challenge}</h2></div>
-          <div><p>The goal</p><h2>{project.goal}</h2></div>
+          <div><p>Context</p><h2>The challenge</h2><span>{project.challenge}</span></div>
+          <div><p>Objective</p><h2>The goal</h2><span>{project.goal}</span></div>
         </section>
 
         <section className="case-role" data-reveal>
@@ -108,7 +134,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
           <div className="case-result">
             <p>Outcome</p>
-            <h2>{project.outcome}</h2>
+            <h2>What the system produced</h2>
+            <strong>{project.outcome}</strong>
             <blockquote>{project.lessons}</blockquote>
           </div>
         </section>

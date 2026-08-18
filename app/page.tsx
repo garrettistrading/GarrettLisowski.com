@@ -1,12 +1,8 @@
 import {
   ArrowDown,
   ArrowUpRight,
-  Calculator,
-  ChartLineUp,
   EnvelopeSimple,
-  Handshake,
   MapPin,
-  PresentationChart,
 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,35 +12,38 @@ import { ProjectVisual } from "@/components/ProjectVisual";
 import { ScrollReveals } from "@/components/ScrollReveals";
 import { education, leadership, profile, projects, skillGroups } from "@/lib/portfolio";
 
-const candidateProof = [
-  {
-    title: "Financial modeling",
-    body: "Pricing, capital expenditure, forecasting, scenario analysis, and valuation.",
-    icon: Calculator,
-  },
-  {
-    title: "Investment research",
-    body: "Time-series, cross-asset, relative-strength, beta, and correlation analysis.",
-    icon: ChartLineUp,
-  },
-  {
-    title: "Decision reporting",
-    body: "Variance, forecast, market, and leadership reporting built for fast review.",
-    icon: PresentationChart,
-  },
-  {
-    title: "Commercial judgment",
-    body: "Account planning, pipeline forecasting, client discovery, and stakeholder coordination.",
-    icon: Handshake,
-  },
-];
-
 export default function Home() {
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    jobTitle: "Financial Analyst",
+    email: `mailto:${profile.email}`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Winter Park",
+      addressRegion: "FL",
+      addressCountry: "US",
+    },
+    url: "https://www.garrettlisowski.com/",
+    knowsAbout: [
+      "Financial modeling",
+      "Investment research",
+      "Forecasting",
+      "Portfolio analytics",
+      "Market analysis",
+    ],
+  };
+
   return (
     <main className="portfolio-main" id="top">
       <a className="skip-link" href="#content">Skip to content</a>
       <Navigation />
       <ScrollReveals />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
 
       <div id="content">
         <section className="portfolio-hero candidate-hero">
@@ -52,7 +51,7 @@ export default function Home() {
             <p className="intro-line">Financial Analyst · Investment Research · Strategy</p>
             <h1>Garrett Lisowski</h1>
             <p className="hero-support">
-              I turn complex financial and market data into clear models, research, and reporting that support better decisions.
+              I combine hands-on financial modeling and market research with client-facing operating experience to make complex decisions clearer.
             </p>
             <div className="hero-cta-row">
               <a className="primary-action" href="#experience">
@@ -80,7 +79,7 @@ export default function Home() {
             <p>Experience</p>
             <h2>Evidence across analysis and execution.</h2>
             <span>
-              Select a role to review the work, scope, and measured outcomes.
+              Financial analysis, commercial execution, and the decisions connecting them.
             </span>
           </header>
           <div className="experience-evidence" aria-label="Selected evidence" data-reveal>
@@ -89,14 +88,17 @@ export default function Home() {
             <div><strong>100+</strong><span>Equities covered in investment-committee research</span></div>
           </div>
           <CareerTimeline />
+          <p className="experience-context" data-reveal>
+            Metrics reflect the role-specific periods shown. Commercially sensitive source files and client information are omitted.
+          </p>
         </section>
 
         <section className="selected-work" id="work">
           <header className="portfolio-section-heading" data-reveal>
             <p>Selected work</p>
-            <h2>Research tools built for real decisions.</h2>
+            <h2>Two research systems, shown in detail.</h2>
             <span>
-              Source-backed examples of how I structure market evidence, test signals, and make analytical reasoning reviewable.
+              Source-backed examples of how I structure market evidence and make analytical reasoning reviewable.
             </span>
           </header>
 
@@ -123,28 +125,6 @@ export default function Home() {
                 </div>
               </article>
             ))}
-          </div>
-        </section>
-
-        <section className="capability-section" aria-labelledby="capability-title">
-          <header className="capability-heading" data-reveal>
-            <p>What I bring</p>
-            <h2 id="capability-title">Analysis that holds up in the room.</h2>
-            <span className="capability-support">
-              Financial analysis for clearer investment and operating decisions, grounded in modeling, research, reporting, and commercial judgment.
-            </span>
-          </header>
-          <div className="capability-grid">
-            {candidateProof.map((item) => {
-              const Icon = item.icon;
-              return (
-                <article data-reveal key={item.title}>
-                  <Icon size={25} weight="light" aria-hidden="true" />
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </article>
-              );
-            })}
           </div>
         </section>
 
@@ -189,7 +169,7 @@ export default function Home() {
         <section className="contact-section" id="contact">
           <div className="contact-copy" data-reveal>
             <p>Contact</p>
-            <h2>Let’s discuss opportunities in investment research, financial analysis, portfolio analytics, or strategy.</h2>
+            <h2>Building a finance team that values clear thinking? Let’s talk.</h2>
           </div>
           <div className="contact-details" data-reveal>
             <a href={`mailto:${profile.email}`}>

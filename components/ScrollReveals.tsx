@@ -1,37 +1,28 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import { useEffect } from "react";
 
 export function ScrollReveals() {
-  useGSAP(() => {
-    const media = gsap.matchMedia();
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    media.add("(prefers-reduced-motion: no-preference)", () => {
-      gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
-        gsap.fromTo(
-          element,
-          { y: 44, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.9,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: element,
-              start: "top 86%",
-              once: true,
-            },
-          },
-        );
-      });
-    });
+    const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    elements.forEach((element) => element.classList.add("reveal-pending"));
 
-    return () => media.revert();
-  });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("reveal-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -12%", threshold: 0.05 },
+    );
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
 
   return null;
 }

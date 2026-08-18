@@ -4,12 +4,14 @@ import { useRef, useState } from "react";
 import { experience } from "@/lib/portfolio";
 
 export function CareerTimeline() {
-  const [active, setActive] = useState(0);
+  const primaryExperience = experience.slice(0, 4);
+  const additionalExperience = experience.slice(4);
+  const [active, setActive] = useState(2);
   const buttons = useRef<Array<HTMLButtonElement | null>>([]);
-  const selected = experience[active];
+  const selected = primaryExperience[active];
 
   const moveFocus = (next: number) => {
-    const index = (next + experience.length) % experience.length;
+    const index = (next + primaryExperience.length) % primaryExperience.length;
     setActive(index);
     buttons.current[index]?.focus();
   };
@@ -17,7 +19,7 @@ export function CareerTimeline() {
   return (
     <div className="career-timeline" data-reveal>
       <div className="timeline-index" role="tablist" aria-label="Professional experience">
-        {experience.map((item, index) => (
+        {primaryExperience.map((item, index) => (
           <button
             className={active === index ? "is-active" : ""}
             id={`career-tab-${index}`}
@@ -67,6 +69,25 @@ export function CareerTimeline() {
           ))}
         </ul>
       </article>
+
+      <section className="additional-experience" aria-labelledby="additional-experience-title">
+        <header>
+          <p>Additional experience</p>
+          <h3 id="additional-experience-title">Concurrent ventures and applied market work.</h3>
+        </header>
+        <div>
+          {additionalExperience.map((item) => (
+            <article key={`${item.organization}-${item.period}`}>
+              <div>
+                <strong>{item.role}</strong>
+                <span>{item.organization}</span>
+              </div>
+              <time>{item.period}</time>
+              <p>{item.evidence[0]}</p>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

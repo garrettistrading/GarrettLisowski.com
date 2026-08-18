@@ -53,7 +53,7 @@ function categoryClass(category: string) { return `category-cell category-${cate
 function ForwardChart() {
   return (
     <article className="workstation-panel forward-panel">
-      <header><div><p>Forward testing</p><h3>Total score</h3></div><span>Jan 05 — Feb 05, 2025</span></header>
+      <header><div><p>Historical test sequence</p><h3>Total score</h3></div><span>Jan 05 — Feb 05, 2025</span></header>
       <div className="platform-chart compact-platform-chart">
         <svg viewBox="0 0 900 285" role="img" aria-label="Historical MTPI score from January 5 through February 5, 2025">
           {[20, 79.5, 139, 198.5, 258].map((y, index) => <g key={y}><line x1="52" x2="858" y1={y} y2={y} /><text x="7" y={y + 4}>{["1.0", "0.5", "0.0", "−0.5", "−1.0"][index]}</text></g>)}
@@ -68,6 +68,7 @@ function ForwardChart() {
         <div className="platform-x-axis"><span>Jan 05</span><span>Jan 14</span><span>Jan 22</span><span>Jan 30</span><span>Feb 05</span></div>
       </div>
       <footer><span>Observed high 0.82</span><span>Observed low −0.91</span></footer>
+      <p className="panel-method-note">This sequence extends beyond the January 17 matrix snapshot; it shows score evolution, not investment performance.</p>
     </article>
   );
 }
@@ -89,12 +90,19 @@ function MtpiEvidence() {
       <section className="mtpi-system-canvas" data-reveal aria-labelledby="matrix-title">
         <header className="workspace-titlebar"><div><strong>MTPI</strong><span>Whole market trend · Total market cap</span></div><dl><dt>Updated</dt><dd>Jan 17, 2025</dd><dt>Average</dt><dd>−0.91 · Short</dd></dl></header>
         <div className="mtpi-system-main">
-          <div className="research-table-scroll">
-            <div className="full-signal-table" role="table" aria-label="MTPI indicator matrix">
-              <div role="row"><span>Category</span><span id="matrix-title">Indicator</span><span>Timeframe</span><span>Comments / inputs</span><span>Score</span><span>Result</span></div>
-              {signalRows.map(([category, indicator, frame, comments, score, result]) => <div role="row" key={`${category}-${indicator}`}><strong className={categoryClass(category)}>{category}</strong><span>{indicator}</span><span>{frame}</span><span>{comments}</span><b>{score}</b><i className={result === "Bearish" ? "cell-bearish" : "cell-bullish"}>{result}</i></div>)}
-              <footer><span>MTPI total average score</span><strong>−0.91</strong><i>Short</i></footer>
-            </div>
+          <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable MTPI indicator matrix">
+            <table className="full-signal-table">
+              <caption id="matrix-title">MTPI indicator matrix</caption>
+              <thead><tr><th scope="col">Category</th><th scope="col">Indicator</th><th scope="col">Timeframe</th><th scope="col">Comments / inputs</th><th scope="col">Score</th><th scope="col">Result</th></tr></thead>
+              <tbody>
+                {signalRows.map(([category, indicator, frame, comments, score, result]) => (
+                  <tr key={`${category}-${indicator}`}>
+                    <th scope="row" className={categoryClass(category)}>{category}</th><td>{indicator}</td><td>{frame}</td><td>{comments}</td><td><b>{score}</b></td><td><i className={result === "Bearish" ? "cell-bearish" : "cell-bullish"}>{result}</i></td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot><tr><th scope="row" colSpan={4}>MTPI total average score</th><td><strong>−0.91</strong></td><td><i>Short</i></td></tr></tfoot>
+            </table>
           </div>
           <ResearchGauge label="Medium-term trend" score="−0.91" state="Short" />
         </div>
@@ -103,9 +111,12 @@ function MtpiEvidence() {
       <div className="mtpi-analysis-grid" data-reveal>
         <article className="workstation-panel correlation-panel">
           <header><div><p>Macro context</p><h3>BTC correlation table</h3></div><span>15D · 30D · 90D · 120D</span></header>
-          <div className="correlation-heatmap full-correlation-table" role="table" aria-label="Historical BTC macro correlations">
-            <div><strong>Series</strong><span>15D</span><span>30D</span><span>90D</span><span>120D</span><span>Avg.</span></div>
-            {correlationRows.map(([name, ...values]) => <div key={name}><strong>{name}</strong>{values.map((value, index) => <span key={`${name}-${index}`} data-negative={value < 0 ? "" : undefined} style={{ "--heat": heatAlpha(value) } as CSSProperties}>{value.toFixed(2)}</span>)}</div>)}
+          <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable macro-correlation table">
+            <table className="correlation-heatmap full-correlation-table">
+              <caption>Historical BTC macro correlations</caption>
+              <thead><tr><th scope="col">Series</th><th scope="col">15D</th><th scope="col">30D</th><th scope="col">90D</th><th scope="col">120D</th><th scope="col">Avg.</th></tr></thead>
+              <tbody>{correlationRows.map(([name, ...values]) => <tr key={name}><th scope="row">{name}</th>{values.map((value, index) => <td key={`${name}-${index}`} data-negative={value < 0 ? "" : undefined} style={{ "--heat": heatAlpha(value) } as CSSProperties}>{value.toFixed(2)}</td>)}</tr>)}</tbody>
+            </table>
           </div>
         </article>
         <ForwardChart />
@@ -136,16 +147,16 @@ const candidateRows = [
 ];
 
 const tracePanels = [
-  { title: "ETH/BTC relative price", label: "Normalized historical view", path: "M20 42 L35 86 L51 57 L67 91 L84 81 L103 108 L122 124 L142 145 L164 157 L187 142 L209 119 L231 88 L253 103 L274 78 L295 57 L315 79 L337 75 L360 91 L383 82 L408 95 L435 99 L463 110 L494 105 L526 119 L560 116 L598 128", markers: [55, 92, 136, 184, 232, 278, 327, 374, 423, 476, 529] },
-  { title: "AFR model alignment", label: "State changes through time", path: "M20 68 L38 92 L58 83 L80 109 L101 98 L123 131 L146 146 L169 139 L193 126 L217 91 L241 106 L266 75 L292 94 L320 84 L348 97 L377 90 L407 104 L438 99 L470 110 L502 107 L536 118 L568 115 L598 124", markers: [44, 80, 119, 161, 205, 252, 300, 351, 405, 462, 522] },
-  { title: "Indicator time coherence", label: "Positive and negative marker density", path: "M20 53 L42 76 L64 67 L86 101 L109 117 L133 142 L158 151 L183 136 L210 102 L237 87 L265 94 L294 72 L324 84 L355 78 L388 91 L421 87 L455 96 L491 92 L528 100 L565 97 L598 103", markers: [38, 62, 91, 123, 158, 195, 235, 278, 326, 379, 435, 494, 554] },
+  { title: "ETH/BTC relative-price structure", label: "Source-workbook reconstruction", path: "M20 42 L35 86 L51 57 L67 91 L84 81 L103 108 L122 124 L142 145 L164 157 L187 142 L209 119 L231 88 L253 103 L274 78 L295 57 L315 79 L337 75 L360 91 L383 82 L408 95 L435 99 L463 110 L494 105 L526 119 L560 116 L598 128", markers: [55, 92, 136, 184, 232, 278, 327, 374, 423, 476, 529] },
+  { title: "AFR model alignment", label: "Source-workbook reconstruction", path: "M20 68 L38 92 L58 83 L80 109 L101 98 L123 131 L146 146 L169 139 L193 126 L217 91 L241 106 L266 75 L292 94 L320 84 L348 97 L377 90 L407 104 L438 99 L470 110 L502 107 L536 118 L568 115 L598 124", markers: [44, 80, 119, 161, 205, 252, 300, 351, 405, 462, 522] },
+  { title: "Indicator time coherence", label: "Source-workbook reconstruction", path: "M20 53 L42 76 L64 67 L86 101 L109 117 L133 142 L158 151 L183 136 L210 102 L237 87 L265 94 L294 72 L324 84 L355 78 L388 91 L421 87 L455 96 L491 92 L528 100 L565 97 L598 103", markers: [38, 62, 91, 123, 158, 195, 235, 278, 326, 379, 435, 494, 554] },
 ];
 
 function TracePanel({ panel, wide = false }: { panel: typeof tracePanels[number]; wide?: boolean }) {
   return (
     <article className={`trace-panel ${wide ? "is-wide" : ""}`}>
       <header><strong>{panel.title}</strong><span>{panel.label}</span></header>
-      <svg viewBox="0 0 620 190" role="img" aria-label={`${panel.title}, normalized historical research trace`}>
+      <svg viewBox="0 0 620 190" role="img" aria-label={`${panel.title}, schematic reconstruction from the source workbook`}>
         {[25, 65, 105, 145, 185].map((y) => <line x1="20" x2="600" y1={y} y2={y} key={y} />)}
         {panel.markers.map((x, index) => <line className={index % 3 === 0 || index % 5 === 0 ? "marker-positive" : "marker-negative"} x1={x} x2={x} y1="25" y2="165" key={x} />)}
         <path d={panel.path} />
@@ -160,8 +171,8 @@ function RspsEvidence() {
     <section className="case-evidence research-evidence" aria-labelledby="evidence-title">
       <header className="case-evidence-heading" data-reveal>
         <p>Research workspace</p>
-        <h2 id="evidence-title">A live review path from regime to security selection.</h2>
-        <span>Pairwise models sit beside normalized historical traces and state markers, then feed the same five-stage research logic and candidate screen.</span>
+        <h2 id="evidence-title">A repeatable review path from regime to security selection.</h2>
+        <span>Recorded pairwise states feed the same five-stage research logic and candidate screen. Structural chart traces recreate the workbook layout without representing them as numeric price series.</span>
       </header>
 
       <div className="evidence-stat-row" data-reveal>
@@ -174,7 +185,7 @@ function RspsEvidence() {
         <div className="rsps-chart-grid">
           {tracePanels.map((panel, index) => <TracePanel panel={panel} wide={index === 0} key={panel.title} />)}
         </div>
-        <footer className="workstation-legend"><span><i className="marker-positive" />Positive model state</span><span><i className="marker-negative" />Negative model state</span><p>Normalized traces preserve the historical review structure; price levels are intentionally omitted.</p></footer>
+        <footer className="workstation-legend"><span><i className="marker-positive" />Positive model state</span><span><i className="marker-negative" />Negative model state</span><p>Schematic reconstruction of the source workbook’s visual structure. No price or performance values are represented.</p></footer>
       </section>
 
       <section className="workflow-section" data-reveal aria-labelledby="workflow-title">
@@ -184,18 +195,22 @@ function RspsEvidence() {
 
       <section className="research-table-section" data-reveal aria-labelledby="pairwise-title">
         <header><div><p>Recorded model states</p><h3 id="pairwise-title">Pairwise trend models</h3></div><span>Exact inputs, horizon, averages, and 80/20 allocation logic from the historical snapshot.</span></header>
-        <div className="research-table-scroll"><div className="pairwise-data-table" role="table" aria-label="Historical RSPS pairwise model states">
-          <div role="row"><span>Model</span><span>Inputs</span><span>Frame</span><span>Average</span><span>State</span><span>Allocation logic</span></div>
-          {pairwiseRows.map(([model, inputs, frame, average, state, allocation]) => <div role="row" key={model}><strong>{model}</strong><span>{inputs}</span><span>{frame}</span><b>{average}</b><i className={state === "Long" ? "cell-bullish" : "cell-bearish"}>{state}</i><span>{allocation}</span></div>)}
-        </div></div>
+        <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable pairwise model table"><table className="pairwise-data-table">
+          <caption>Historical RSPS pairwise model states</caption>
+          <thead><tr><th scope="col">Model</th><th scope="col">Inputs</th><th scope="col">Frame</th><th scope="col">Average</th><th scope="col">State</th><th scope="col">Allocation logic</th></tr></thead>
+          <tbody>{pairwiseRows.map(([model, inputs, frame, average, state, allocation]) => <tr key={model}><th scope="row">{model}</th><td>{inputs}</td><td>{frame}</td><td><b>{average}</b></td><td><i className={state === "Long" ? "cell-bullish" : "cell-bearish"}>{state}</i></td><td>{allocation}</td></tr>)}</tbody>
+        </table></div>
+        <p className="table-scroll-cue">Swipe or use Shift + scroll to review all columns.</p>
       </section>
 
       <section className="research-table-section candidate-section" data-reveal aria-labelledby="candidate-title">
         <header><div><p>Historical candidate screen</p><h3 id="candidate-title">Multi-factor selection table</h3></div><span>Selected ultra-large-cap rows show the market-cap, trend, beta, and score organization.</span></header>
-        <div className="research-table-scroll"><div className="candidate-data-table" role="table" aria-label="Selected historical candidate screening rows">
-          <div role="row"><span>Ticker</span><span>Market cap</span><span>Bull USD</span><span>Bull SOL</span><span>BTC beta</span><span>SOL beta</span><span>Avg beta</span><span>Score</span></div>
-          {candidateRows.map(([ticker, marketCap, usd, sol, btcBeta, solBeta, avgBeta, score]) => <div role="row" key={ticker}><strong>{ticker}</strong><span>{marketCap}</span><span>{usd}</span><span>{sol}</span><span>{btcBeta}</span><span>{solBeta}</span><span>{avgBeta}</span><b>{score}</b></div>)}
-        </div></div>
+        <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable candidate-screening table"><table className="candidate-data-table">
+          <caption>Selected historical candidate screening rows</caption>
+          <thead><tr><th scope="col">Ticker</th><th scope="col">Market cap</th><th scope="col">Bull USD</th><th scope="col">Bull SOL</th><th scope="col">BTC beta</th><th scope="col">SOL beta</th><th scope="col">Avg beta</th><th scope="col">Score</th></tr></thead>
+          <tbody>{candidateRows.map(([ticker, marketCap, usd, sol, btcBeta, solBeta, avgBeta, score]) => <tr key={ticker}><th scope="row">{ticker}</th><td>{marketCap}</td><td>{usd}</td><td>{sol}</td><td>{btcBeta}</td><td>{solBeta}</td><td>{avgBeta}</td><td><b>{score}</b></td></tr>)}</tbody>
+        </table></div>
+        <p className="table-scroll-cue">Swipe or use Shift + scroll to review all columns.</p>
         <p className="table-disclosure">Static historical research snapshot. Values are not current holdings, prices, or recommendations.</p>
       </section>
     </section>
