@@ -33,7 +33,13 @@ export function ScrollReveals() {
       frame = 0;
       const viewportHeight = window.innerHeight;
       const viewportCenter = viewportHeight / 2;
-      const maxDistance = viewportHeight * 0.72;
+      const maxDistance = viewportHeight * 0.58;
+      const isCompact = window.innerWidth <= 560;
+      const minimumScale = isCompact ? 0.88 : 0.84;
+      const maximumScale = isCompact ? 1.045 : 1.08;
+      const minimumOpacity = isCompact ? 0.5 : 0.34;
+      const maximumTranslate = isCompact ? 24 : 38;
+      const maximumBlur = isCompact ? 0.75 : 1.4;
       let focusedElement: HTMLElement | null = null;
       let strongestFocus = -1;
 
@@ -60,18 +66,24 @@ export function ScrollReveals() {
       }
 
       focusStates.forEach(({ element, rect, easedFocus }) => {
-        let adjustedFocus = element === focusedElement ? Math.max(easedFocus, 0.82) : easedFocus;
+        let adjustedFocus = element === focusedElement
+          ? Math.max(easedFocus, 0.9)
+          : Math.min(easedFocus, 0.58);
         if (window.scrollY < 48) {
-          adjustedFocus = element === focusedElement ? 1 : Math.min(easedFocus, 0.52);
+          adjustedFocus = element === focusedElement ? 1 : Math.min(easedFocus, 0.38);
         }
-        const scale = 0.91 + adjustedFocus * 0.11;
-        const opacity = 0.48 + adjustedFocus * 0.52;
+        const scale = minimumScale + adjustedFocus * (maximumScale - minimumScale);
+        const opacity = minimumOpacity + adjustedFocus * (1 - minimumOpacity);
         const direction = rect.top + rect.height / 2 < viewportCenter ? -1 : 1;
-        const translate = direction * (1 - adjustedFocus) * 18;
+        const translate = direction * (1 - adjustedFocus) * maximumTranslate;
+        const blur = (1 - adjustedFocus) * maximumBlur;
+        const brightness = 0.62 + adjustedFocus * 0.38;
 
         element.style.setProperty("--focus-scale", scale.toFixed(4));
         element.style.setProperty("--focus-opacity", opacity.toFixed(4));
         element.style.setProperty("--focus-translate", `${translate.toFixed(2)}px`);
+        element.style.setProperty("--focus-blur", `${blur.toFixed(2)}px`);
+        element.style.setProperty("--focus-brightness", brightness.toFixed(4));
         element.classList.toggle("is-scroll-focus", element === focusedElement);
       });
     };
@@ -95,6 +107,8 @@ export function ScrollReveals() {
         element.style.removeProperty("--focus-scale");
         element.style.removeProperty("--focus-opacity");
         element.style.removeProperty("--focus-translate");
+        element.style.removeProperty("--focus-blur");
+        element.style.removeProperty("--focus-brightness");
       });
     };
   }, []);

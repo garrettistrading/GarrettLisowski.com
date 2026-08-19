@@ -16,7 +16,7 @@ export function PageIntro() {
     const timer = window.setTimeout(() => {
       document.documentElement.classList.remove("portfolio-intro-active");
       setVisible(false);
-    }, 1760);
+    }, 2100);
 
     return () => {
       window.clearTimeout(timer);
@@ -28,13 +28,13 @@ export function PageIntro() {
 
   return (
     <div className="portfolio-intro" aria-hidden="true">
-      <div className="portfolio-intro-lockup">
-        <span className="portfolio-intro-mark">GL</span>
-        <span className="portfolio-intro-divider" />
-        <div>
-          <strong>Garrett Lisowski</strong>
-          <span>Financial analyst · Investment research</span>
+      <div className="portfolio-intro-flight">
+        <div className="portfolio-intro-monogram">
+          <span className="portfolio-intro-letter is-g">G</span>
+          <span className="portfolio-intro-letter is-j">J</span>
+          <span className="portfolio-intro-letter is-l">L</span>
         </div>
+        <p><span>Garrett Lisowski</span><i /><span>Portfolio</span></p>
       </div>
       <div className="portfolio-intro-progress"><span /></div>
     </div>
