@@ -33,29 +33,45 @@ export function ScrollReveals() {
       frame = 0;
       const viewportHeight = window.innerHeight;
       const viewportCenter = viewportHeight / 2;
+      const maxDistance = viewportHeight * 0.72;
       let focusedElement: HTMLElement | null = null;
-      let closestDistance = Number.POSITIVE_INFINITY;
+      let strongestFocus = -1;
 
-      focusElements.forEach((element) => {
+      const focusStates = focusElements.map((element) => {
         const rect = element.getBoundingClientRect();
-        if (rect.bottom <= 0 || rect.top >= viewportHeight) return;
-
+        const isVisible = rect.bottom > 0 && rect.top < viewportHeight;
         const visibleTop = Math.max(rect.top, 0);
         const visibleBottom = Math.min(rect.bottom, viewportHeight);
-        const visibleCenter = (visibleTop + visibleBottom) / 2;
+        const visibleCenter = isVisible ? (visibleTop + visibleBottom) / 2 : rect.top + rect.height / 2;
         const distance = Math.abs(visibleCenter - viewportCenter);
+        const proximity = isVisible ? 1 - Math.min(distance / maxDistance, 1) : 0;
+        const easedFocus = proximity * proximity * (3 - 2 * proximity);
 
-        if (distance < closestDistance) {
-          closestDistance = distance;
+        if (easedFocus > strongestFocus) {
+          strongestFocus = easedFocus;
           focusedElement = element;
         }
+
+        return { element, rect, easedFocus };
       });
 
       if (window.scrollY < 48 && focusElements[0]) {
         focusedElement = focusElements[0];
       }
 
-      focusElements.forEach((element) => {
+      focusStates.forEach(({ element, rect, easedFocus }) => {
+        let adjustedFocus = element === focusedElement ? Math.max(easedFocus, 0.82) : easedFocus;
+        if (window.scrollY < 48) {
+          adjustedFocus = element === focusedElement ? 1 : Math.min(easedFocus, 0.52);
+        }
+        const scale = 0.91 + adjustedFocus * 0.11;
+        const opacity = 0.48 + adjustedFocus * 0.52;
+        const direction = rect.top + rect.height / 2 < viewportCenter ? -1 : 1;
+        const translate = direction * (1 - adjustedFocus) * 18;
+
+        element.style.setProperty("--focus-scale", scale.toFixed(4));
+        element.style.setProperty("--focus-opacity", opacity.toFixed(4));
+        element.style.setProperty("--focus-translate", `${translate.toFixed(2)}px`);
         element.classList.toggle("is-scroll-focus", element === focusedElement);
       });
     };
@@ -76,6 +92,9 @@ export function ScrollReveals() {
       if (frame) window.cancelAnimationFrame(frame);
       focusElements.forEach((element) => {
         element.classList.remove("focus-scale-target", "is-scroll-focus");
+        element.style.removeProperty("--focus-scale");
+        element.style.removeProperty("--focus-opacity");
+        element.style.removeProperty("--focus-translate");
       });
     };
   }, []);

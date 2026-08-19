@@ -11,6 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CareerTimeline } from "@/components/CareerTimeline";
 import { Navigation } from "@/components/Navigation";
+import { PageIntro } from "@/components/PageIntro";
 import { ProjectVisual } from "@/components/ProjectVisual";
 import { ScrollReveals } from "@/components/ScrollReveals";
 import { education, leadership, profile, projects, skillGroups } from "@/lib/portfolio";
@@ -40,6 +41,7 @@ export default function Home() {
 
   return (
     <main className="portfolio-main profile-home" id="top">
+      <PageIntro />
       <a className="skip-link" href="#content">Skip to content</a>
       <Navigation />
       <ScrollReveals />
