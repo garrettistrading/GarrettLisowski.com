@@ -1,7 +1,10 @@
 import {
   ArrowDown,
   ArrowUpRight,
+  Briefcase,
+  ChartLineUp,
   EnvelopeSimple,
+  GraduationCap,
   MapPin,
 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
@@ -36,7 +39,7 @@ export default function Home() {
   };
 
   return (
-    <main className="portfolio-main" id="top">
+    <main className="portfolio-main profile-home" id="top">
       <a className="skip-link" href="#content">Skip to content</a>
       <Navigation />
       <ScrollReveals />
@@ -46,20 +49,7 @@ export default function Home() {
       />
 
       <div id="content">
-        <section className="portfolio-hero candidate-hero">
-          <div className="hero-statement">
-            <p className="intro-line">Financial Analyst · Investment Research · Strategy</p>
-            <h1>Garrett Lisowski</h1>
-            <p className="hero-support">
-              I combine hands-on financial modeling and market research with client-facing operating experience to make complex decisions clearer.
-            </p>
-            <div className="hero-cta-row">
-              <a className="primary-action" href="#experience">
-                View experience
-                <ArrowDown size={18} weight="bold" aria-hidden="true" />
-              </a>
-            </div>
-          </div>
+        <section className="portfolio-hero candidate-hero" aria-labelledby="profile-name">
           <figure className="hero-portrait">
             <div className="hero-portrait-frame">
               <Image
@@ -71,13 +61,46 @@ export default function Home() {
                 unoptimized
               />
             </div>
+            <figcaption>
+              <h1 id="profile-name">Garrett Lisowski</h1>
+              <p>Financial analyst · Investment research</p>
+            </figcaption>
           </figure>
+
+          <nav className="hero-quick-links" aria-label="Profile links">
+            <a href={`mailto:${profile.email}`} aria-label="Email Garrett">
+              <EnvelopeSimple size={20} weight="regular" aria-hidden="true" />
+            </a>
+            <a href="#experience" aria-label="View experience">
+              <Briefcase size={20} weight="regular" aria-hidden="true" />
+            </a>
+            <a href="#work" aria-label="View selected work">
+              <ChartLineUp size={20} weight="regular" aria-hidden="true" />
+            </a>
+            <a href="#background" aria-label="View education and skills">
+              <GraduationCap size={20} weight="regular" aria-hidden="true" />
+            </a>
+          </nav>
+
+          <div className="hero-statement">
+            <p className="hero-profile-line">
+              <strong>Economics · Financial modeling · Strategy</strong>
+              <span>{profile.location}</span>
+            </p>
+            <p className="hero-support">
+              I combine hands-on financial modeling and market research with client-facing operating experience to make complex decisions clearer.
+            </p>
+            <a className="primary-action" href="#experience">
+              View experience
+              <ArrowDown size={18} weight="bold" aria-hidden="true" />
+            </a>
+          </div>
         </section>
 
         <section className="experience-section" id="experience">
-          <header className="portfolio-section-heading" data-reveal>
+          <header className="portfolio-section-heading compact-heading" data-reveal>
             <p>Experience</p>
-            <h2>Evidence across analysis and execution.</h2>
+            <h2>Analysis backed by operating experience.</h2>
             <span>
               Financial analysis, commercial execution, and the decisions connecting them.
             </span>
@@ -94,34 +117,35 @@ export default function Home() {
         </section>
 
         <section className="selected-work" id="work">
-          <header className="portfolio-section-heading" data-reveal>
+          <header className="portfolio-section-heading compact-heading" data-reveal>
             <p>Selected work</p>
-            <h2>Two research systems, shown in detail.</h2>
+            <h2>Research systems built to make evidence reviewable.</h2>
             <span>
               Source-backed examples of how I structure market evidence and make analytical reasoning reviewable.
             </span>
           </header>
 
           <div className="project-list">
-            {projects.map((project, index) => (
-              <article className={`project-feature ${index % 2 === 1 ? "project-feature-reversed" : ""}`} data-reveal key={project.slug}>
-                <Link className="project-preview" href={`/work/${project.slug}`} aria-label={`View ${project.name} case study`}>
-                  <ProjectVisual type={project.visual} />
-                  <span className="project-number">0{index + 1}</span>
+            {projects.map((project) => (
+              <article className="project-feature" data-reveal key={project.slug}>
+                <Link className="project-card-link" href={`/work/${project.slug}`} aria-label={`View ${project.name} case study`}>
+                  <div className="project-preview">
+                    <ProjectVisual type={project.visual} />
+                  </div>
+                  <div className="project-information">
+                    <div>
+                      <p className="project-type">{project.type}</p>
+                      <h3>{project.name}</h3>
+                      <p className="project-summary">{project.summary}</p>
+                    </div>
+                    <ArrowUpRight size={24} weight="regular" aria-hidden="true" />
+                  </div>
                 </Link>
-                <div className="project-information">
-                  <p className="project-type">{project.type}</p>
-                  <h3>{project.name}</h3>
-                  <p className="project-summary">{project.summary}</p>
+                <div className="project-card-meta">
                   <p className="project-role"><span>Contribution</span>{project.role}</p>
                   <ul className="project-proof-points">
                     {project.proofPoints.map((point) => <li key={point}>{point}</li>)}
                   </ul>
-                  {project.disclaimer && <p className="project-disclaimer">Research and tools, not investment advice.</p>}
-                  <Link className="case-study-link" href={`/work/${project.slug}`}>
-                    Review the evidence
-                    <ArrowUpRight size={19} weight="bold" aria-hidden="true" />
-                  </Link>
                 </div>
               </article>
             ))}
@@ -129,7 +153,7 @@ export default function Home() {
         </section>
 
         <section className="background-section" id="background">
-          <header className="portfolio-section-heading" data-reveal>
+          <header className="portfolio-section-heading compact-heading" data-reveal>
             <p>Education and leadership</p>
             <h2>Economics, research, and the tools to execute.</h2>
           </header>
