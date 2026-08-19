@@ -17,3 +17,5 @@ pnpm-debug.log*
 
 # Private source research used to prepare public case studies
 work/source-material/
+.vercel
+.env*.local
