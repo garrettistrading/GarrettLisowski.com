@@ -123,7 +123,7 @@ export default function Home() {
             <p>Selected work</p>
             <h2>Research systems built to make evidence reviewable.</h2>
             <span>
-              Source-backed examples of how I structure market evidence and make analytical reasoning reviewable.
+              Selected examples of how I structure financial evidence and make analytical reasoning reviewable.
             </span>
           </header>
 

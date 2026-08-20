@@ -1,4 +1,4 @@
-export type VisualType = "trend" | "relative-strength";
+export type VisualType = "deferred-comp" | "trend" | "relative-strength";
 
 export type Project = {
   slug: string;
@@ -36,6 +36,52 @@ export const profile = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "executive-deferred-compensation-trs-hedge-model",
+    name: "Executive Deferred Compensation TRS Hedge Model",
+    type: "Independent educational model",
+    summary:
+      "A fictional investment-operations model showing how a Total Return Swap and ETF proxies can reduce deferred-compensation liability volatility.",
+    role: "Model design, swap mechanics, reconciliation controls, management reporting",
+    tools: ["Excel model architecture", "ETF proxy analysis", "Settlement validation"],
+    outcome:
+      "A reviewable educational prototype connecting plan exposure, hedge reweighting, settlement economics, and monthly control checks.",
+    visual: "deferred-comp",
+    proofPoints: ["9 modeled review areas", "5 core calculations", "4 control checks"],
+    challenge:
+      "A deferred-compensation liability changes with participant investment elections while the hedge carries its own return, financing, and settlement mechanics. The operating challenge is keeping those moving parts aligned and explainable.",
+    goal:
+      "Design an educational model that shows how plan exposure can be mapped to ETF proxies, translated into target swap notionals, and reconciled through a controlled monthly reporting process.",
+    responsibilities: [
+      "Structured fictional participant balances, investment elections, contributions, distributions, and aggregate exposure by plan option.",
+      "Mapped fictional plan options to public ETF proxies using correlation, tracking error, fees, liquidity, and distribution treatment as review criteria.",
+      "Modeled target notional, reweighting orders, the total-return leg, financing expense, and simplified net settlement.",
+      "Designed hedge-effectiveness reporting and exception controls for allocation, price, mapping, settlement, and reviewer checks.",
+    ],
+    process: [
+      {
+        title: "Aggregate the liability",
+        body: "Roll participant elections and plan activity into a single exposure view by investment option before calculating any hedge requirement.",
+      },
+      {
+        title: "Map and reweight",
+        body: "Evaluate transparent ETF proxies, apply the target hedge ratio, and calculate the buy or sell order needed to align swap notional with plan exposure.",
+      },
+      {
+        title: "Settle and control",
+        body: "Separate the return and financing legs, estimate net settlement, and route material differences through reconciliation checks and reviewer sign-off.",
+      },
+    ],
+    decisions: [
+      "Use fictional plan data and clearly label every displayed value as an educational example.",
+      "Include distributions in total-return calculations instead of relying on price change alone.",
+      "Keep proxy quality, hedge effectiveness, and operating controls visible in the same review path.",
+    ],
+    lessons:
+      "A hedge model is useful only when exposure, settlement, tracking difference, and exceptions can all be traced back to a controlled monthly process.",
+    disclaimer:
+      "Independent educational prototype using fictional plan data and illustrative sample values. It is not an Atlas model, client example, proprietary platform replica, or legal, tax, accounting, or investment advice. Actual swap terms and settlement conventions depend on the governing agreement.",
+  },
   {
     slug: "market-trend-probability-indicator",
     name: "Market Trend Probability Indicator",

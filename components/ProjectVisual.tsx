@@ -3,6 +3,55 @@ import { ResearchGauge } from "@/components/ResearchGauge";
 
 type ProjectVisualProps = { type: VisualType; detail?: boolean };
 
+const hedgePreviewRows = [
+  ["US large cap", "$5.12m", "$4.71m", "+$171k"],
+  ["US small cap", "$2.08m", "$1.91m", "+$94k"],
+  ["Core bond", "$3.16m", "$2.91m", "+$27k"],
+  ["International", "$2.12m", "$1.95m", "+$9k"],
+];
+
+function DeferredCompVisual({ detail }: { detail: boolean }) {
+  return (
+    <div className={`research-visual analyst-workspace trs-workspace ${detail ? "is-detail" : ""}`}>
+      <header className="workspace-header">
+        <div><strong>TRS Hedge Model</strong><span>Executive deferred compensation</span></div>
+        <dl><dt>Data</dt><dd>Fictional</dd><dt>Review</dt><dd className="state-long">Controls clear</dd></dl>
+      </header>
+
+      <div className="trs-preview-metrics" aria-label="Illustrative hedge summary">
+        <div><span>Plan exposure</span><strong>$12.48m</strong></div>
+        <div><span>Target notional</span><strong>$11.48m</strong></div>
+        <div><span>Hedge ratio</span><strong>92.0%</strong></div>
+        <div><span>Reweight order</span><strong>+$301k</strong></div>
+      </div>
+
+      <div className="trs-preview-body">
+        <div className="preview-table-scroll" tabIndex={0} aria-label="Scrollable illustrative reweighting table">
+          <table className="trs-reweight-table">
+            <caption>Illustrative target notional by plan option</caption>
+            <thead><tr><th scope="col">Plan option</th><th scope="col">Exposure</th><th scope="col">Target</th><th scope="col">Order</th></tr></thead>
+            <tbody>
+              {hedgePreviewRows.map(([option, exposure, target, order]) => (
+                <tr key={option}><th scope="row">{option}</th><td>{exposure}</td><td>{target}</td><td><b>{order}</b></td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <figure className="trs-volatility-chart">
+          <figcaption><strong>Monthly volatility</strong><span>Illustrative standard deviation</span></figcaption>
+          <div className="trs-chart-stage" aria-label="Unhedged volatility 2.4 percent and residual hedged volatility 0.9 percent">
+            <div><i style={{ height: "82%" }} /><strong>2.4%</strong><span>Unhedged</span></div>
+            <div><i style={{ height: "31%" }} /><strong>0.9%</strong><span>Hedged</span></div>
+          </div>
+        </figure>
+      </div>
+
+      <footer className="workspace-summary"><span>4 plan options</span><span>4 control checks</span><strong>Illustrative educational model</strong></footer>
+    </div>
+  );
+}
+
 const mtpiPreviewRows = [
   ["Perpetual", "EWMA", "3D", "−1.00", "Bearish"],
   ["Perpetual", "SALMA RED K", "3D", "−1.00", "Bearish"],
@@ -106,6 +155,7 @@ function RelativeStrengthVisual({ detail }: { detail: boolean }) {
 }
 
 export function ProjectVisual({ type, detail = false }: ProjectVisualProps) {
+  if (type === "deferred-comp") return <DeferredCompVisual detail={detail} />;
   if (type === "trend") return <TrendVisual detail={detail} />;
   return <RelativeStrengthVisual detail={detail} />;
 }

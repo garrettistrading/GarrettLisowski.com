@@ -4,8 +4,10 @@ import test from "node:test";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("featured work contains only evidence-backed research systems", async () => {
+test("featured work contains the educational hedge model and evidence-backed research systems", async () => {
   const portfolio = await read("lib/portfolio.ts");
+  assert.match(portfolio, /executive-deferred-compensation-trs-hedge-model/);
+  assert.match(portfolio, /Independent educational prototype using fictional plan data/);
   assert.match(portfolio, /market-trend-probability-indicator/);
   assert.match(portfolio, /relative-strength-portfolio-research/);
   assert.doesNotMatch(portfolio, /slug: "financial-modeling-reporting"/);
@@ -31,6 +33,7 @@ test("research data uses semantic tables and mobile navigation supports Escape",
     read("components/Navigation.tsx"),
   ]);
   assert.match(evidence, /<table className="full-signal-table">/);
+  assert.match(evidence, /<table className="trs-exposure-table">/);
   assert.match(evidence, /<th scope="col">/);
   assert.match(preview, /<table className="mtpi-preview-matrix">/);
   assert.match(navigation, /event\.key !== "Escape"/);

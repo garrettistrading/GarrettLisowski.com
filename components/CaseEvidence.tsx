@@ -217,7 +217,138 @@ function RspsEvidence() {
   );
 }
 
+const hedgeEffectiveness = {
+  months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  unhedged: [-210, 95, -145, 180, 65, -265, 125, -90, 220, -170, 105, 245],
+  hedged: [-74, 28, -52, 62, 22, -91, 43, -31, 78, -59, 36, 84],
+};
+
+const proxyRows = [
+  ["US large cap", "SPY", "0.99", "0.48%", "0.09%", "High liquidity"],
+  ["US small cap", "IWM", "0.97", "1.25%", "0.19%", "Broad small-cap proxy"],
+  ["Core bond", "BND", "0.98", "0.62%", "0.03%", "Diversified bond exposure"],
+  ["International", "VEA", "0.96", "1.41%", "0.03%", "Developed-market proxy"],
+];
+
+const controlRows = [
+  ["Balance roll-forward", "Beginning balance + activity = ending balance", "Pass"],
+  ["Allocation total", "Participant elections total 100%", "Pass"],
+  ["Proxy and price coverage", "No missing mappings or observations", "Pass"],
+  ["Settlement tolerance", "Internal estimate within $25k threshold", "Pass"],
+];
+
+function hedgePath(values: number[]) {
+  return values.map((value, index) => {
+    const x = 52 + (index / (values.length - 1)) * 806;
+    const y = 28 + ((300 - value) / 600) * 210;
+    return `${index === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`;
+  }).join(" ");
+}
+
+function DeferredCompEvidence() {
+  return (
+    <section className="case-evidence research-evidence trs-evidence" aria-labelledby="evidence-title">
+      <header className="case-evidence-heading" data-reveal>
+        <p>Educational model</p>
+        <h2 id="evidence-title">Exposure, settlement, and controls in one monthly review.</h2>
+        <span>Every value below is fictional and illustrates the model structure. The presentation focuses on calculations, review logic, and operating controls.</span>
+      </header>
+
+      <div className="evidence-stat-row" data-reveal>
+        <div><strong>$12.48m</strong><span>fictional plan exposure</span></div>
+        <div><strong>92.0%</strong><span>target hedge ratio</span></div>
+        <div><strong>$11.48m</strong><span>target swap notional</span></div>
+        <div><strong>4 / 4</strong><span>sample controls passed</span></div>
+      </div>
+
+      <section className="trs-model-canvas" data-reveal aria-labelledby="trs-model-title">
+        <header className="workspace-titlebar">
+          <div><strong>TRS Hedge Model</strong><span id="trs-model-title">Monthly management review</span></div>
+          <dl><dt>Model date</dt><dd>Illustrative</dd><dt>Data</dt><dd>Fictional</dd></dl>
+        </header>
+
+        <div className="trs-model-grid">
+          <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable illustrative exposure and reweighting table">
+            <table className="trs-exposure-table">
+              <caption>Plan exposure and target swap notional</caption>
+              <thead><tr><th scope="col">Plan option</th><th scope="col">Exposure</th><th scope="col">Proxy</th><th scope="col">Target</th><th scope="col">Current</th><th scope="col">Order</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">US large cap</th><td>$5.12m</td><td>SPY</td><td>$4.71m</td><td>$4.54m</td><td><b>+$171k</b></td></tr>
+                <tr><th scope="row">US small cap</th><td>$2.08m</td><td>IWM</td><td>$1.91m</td><td>$1.82m</td><td><b>+$94k</b></td></tr>
+                <tr><th scope="row">Core bond</th><td>$3.16m</td><td>BND</td><td>$2.91m</td><td>$2.88m</td><td><b>+$27k</b></td></tr>
+                <tr><th scope="row">International</th><td>$2.12m</td><td>VEA</td><td>$1.95m</td><td>$1.94m</td><td><b>+$9k</b></td></tr>
+              </tbody>
+              <tfoot><tr><th scope="row">Total</th><td>$12.48m</td><td>4 proxies</td><td>$11.48m</td><td>$11.18m</td><td><strong>+$301k</strong></td></tr></tfoot>
+            </table>
+          </div>
+
+          <aside className="trs-formula-review" aria-label="Core model calculations">
+            <p>Core calculations</p>
+            <dl>
+              <div><dt>Target notional</dt><dd>Exposure × hedge ratio</dd></div>
+              <div><dt>Trade order</dt><dd>Target - current notional</dd></div>
+              <div><dt>Financing expense</dt><dd>Notional × rate × day count</dd></div>
+              <div><dt>Net settlement</dt><dd>Return leg - financing - fees</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <div className="trs-analysis-grid" data-reveal>
+        <article className="workstation-panel trs-settlement-panel">
+          <header><div><p>Settlement calculation</p><h3>Simplified monthly estimate</h3></div><span>Illustrative sample</span></header>
+          <dl>
+            <div><dt>Total-return leg</dt><dd>$205,712</dd></div>
+            <div><dt>Financing expense</dt><dd>($58,247)</dd></div>
+            <div><dt>Applicable fees</dt><dd>($3,500)</dd></div>
+            <div className="trs-settlement-total"><dt>Estimated net settlement</dt><dd>$143,965</dd></div>
+          </dl>
+          <footer><span>Direction</span><strong>Company receives</strong></footer>
+        </article>
+
+        <article className="workstation-panel trs-effectiveness-panel">
+          <header><div><p>Hedge effectiveness</p><h3>Unhedged versus residual P&amp;L</h3></div><span>Illustrative $000s</span></header>
+          <div className="trs-effectiveness-chart">
+            <svg viewBox="0 0 900 265" role="img" aria-label="Illustrative unhedged and hedged monthly profit and loss comparison">
+              {[28, 80.5, 133, 185.5, 238].map((y, index) => <g key={y}><line x1="52" x2="858" y1={y} y2={y} /><text x="4" y={y + 4}>{["300", "150", "0", "-150", "-300"][index]}</text></g>)}
+              <path className="unhedged-line" d={hedgePath(hedgeEffectiveness.unhedged)} />
+              <path className="hedged-line" d={hedgePath(hedgeEffectiveness.hedged)} />
+            </svg>
+            <div className="trs-chart-axis">{hedgeEffectiveness.months.map((month) => <span key={month}>{month}</span>)}</div>
+          </div>
+          <footer className="trs-chart-legend"><span><i className="unhedged-key" />Unhedged liability movement</span><span><i className="hedged-key" />Residual after hedge</span></footer>
+        </article>
+      </div>
+
+      <section className="research-table-section trs-proxy-section" data-reveal aria-labelledby="proxy-title">
+        <header><div><p>Proxy selection</p><h3 id="proxy-title">ETF mapping review</h3></div><span>Sample values demonstrate the decision fields. They are not current market statistics or recommendations.</span></header>
+        <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable illustrative ETF proxy table">
+          <table className="trs-proxy-table">
+            <caption>Illustrative proxy-selection review</caption>
+            <thead><tr><th scope="col">Plan option</th><th scope="col">ETF</th><th scope="col">Correlation</th><th scope="col">Tracking error</th><th scope="col">Fee</th><th scope="col">Rationale</th></tr></thead>
+            <tbody>{proxyRows.map(([option, etf, correlation, tracking, fee, rationale]) => <tr key={option}><th scope="row">{option}</th><td><b>{etf}</b></td><td>{correlation}</td><td>{tracking}</td><td>{fee}</td><td>{rationale}</td></tr>)}</tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="research-table-section trs-controls-section" data-reveal aria-labelledby="controls-title">
+        <header><div><p>Controls and reconciliation</p><h3 id="controls-title">Exceptions routed before sign-off</h3></div><span>The control layer keeps model output tied to source completeness, tolerances, and reviewer accountability.</span></header>
+        <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable illustrative control table">
+          <table className="trs-controls-table">
+            <caption>Illustrative monthly control results</caption>
+            <thead><tr><th scope="col">Control</th><th scope="col">Test</th><th scope="col">Status</th></tr></thead>
+            <tbody>{controlRows.map(([control, test, status]) => <tr key={control}><th scope="row">{control}</th><td>{test}</td><td><i className="cell-bullish">{status}</i></td></tr>)}</tbody>
+          </table>
+        </div>
+      </section>
+
+      <p className="workspace-disclosure">Educational illustration only. No real participant, employer, client, or counterparty data is shown.</p>
+    </section>
+  );
+}
+
 export function CaseEvidence({ type }: CaseEvidenceProps) {
+  if (type === "deferred-comp") return <DeferredCompEvidence />;
   if (type === "trend") return <MtpiEvidence />;
   if (type === "relative-strength") return <RspsEvidence />;
   return null;
