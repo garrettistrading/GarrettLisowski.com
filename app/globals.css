@@ -1621,14 +1621,6 @@ ul { margin: 0; padding: 0; }
 }
 .reveal-pending.reveal-visible { opacity: 1; transform: translateY(0); }
 
-.experience-context {
-  border-top: 1px solid var(--line);
-  color: var(--slate);
-  font-size: 11px;
-  line-height: 1.55;
-  margin: 48px 0 0;
-  padding-top: 16px;
-}
 .career-timeline .additional-experience {
   border-top: 1px solid var(--line-strong);
   display: grid;
@@ -2288,8 +2280,6 @@ html.portfolio-intro-active { overflow: hidden; }
 .profile-home .additional-experience span,
 .profile-home .additional-experience time { color: #767983; }
 .profile-home .additional-experience article p { color: #a9abb2; }
-.profile-home .experience-context { border-color: var(--line); color: #70737c; }
-
 .profile-home .project-list { gap: 76px; }
 .profile-home .project-feature { display: block; }
 .profile-home .project-card-link {

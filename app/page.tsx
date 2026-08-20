@@ -102,10 +102,6 @@ export default function Home() {
         <section className="experience-section" id="experience">
           <header className="portfolio-section-heading compact-heading" data-reveal>
             <p>Experience</p>
-            <h2>A correct model can still be useless.</h2>
-            <span>
-              The assumptions need to be visible, the numbers defensible, and the answer clear enough for someone else to use.
-            </span>
           </header>
           <div className="experience-evidence" aria-label="Selected evidence" data-reveal>
             <div><strong>3.78</strong><span>GPA in Economics</span></div>
@@ -113,18 +109,11 @@ export default function Home() {
             <div><strong>100+</strong><span>Stocks reviewed for an investment committee</span></div>
           </div>
           <CareerTimeline />
-          <p className="experience-context" data-reveal>
-            I have left out client names, source files, and anything commercially sensitive.
-          </p>
         </section>
 
         <section className="selected-work" id="work">
           <header className="portfolio-section-heading compact-heading" data-reveal>
             <p>Selected work</p>
-            <h2>The finished work, not just the headline.</h2>
-            <span>
-              Each case study shows the model, the choices behind it, and the limits I did not try to hide.
-            </span>
           </header>
 
           <div className="project-list">
@@ -157,7 +146,6 @@ export default function Home() {
         <section className="background-section" id="background">
           <header className="portfolio-section-heading compact-heading" data-reveal>
             <p>Education and leadership</p>
-            <h2>The foundation behind the work.</h2>
           </header>
 
           <div className="credential-grid" data-reveal>
