@@ -47,7 +47,7 @@ function DeferredCompVisual({ detail }: { detail: boolean }) {
         </figure>
       </div>
 
-      <footer className="workspace-summary"><span>4 plan options</span><span>4 control checks</span><strong>Illustrative educational model</strong></footer>
+      <footer className="workspace-summary"><span>4 plan options</span><span>4 control checks</span><strong>Fictional learning model</strong></footer>
     </div>
   );
 }
@@ -60,7 +60,7 @@ const mtpiPreviewRows = [
   ["Oscillators", "Normalized KAMA", "4D", "−1.00", "Bearish"],
   ["Bitcoin", "T3S", "5D", "−1.00", "Bearish"],
   ["Ethereum", "EWMA", "4D", "−1.00", "Bearish"],
-  ["Macro", "Correlation coefficient", "15–120D", "0.28", "Slight bull"],
+  ["Macro", "Correlation coefficient", "15-120D", "0.28", "Slight bull"],
 ];
 
 const mtpiDetailRows = [
@@ -78,7 +78,7 @@ const mtpiDetailRows = [
   ["Bitcoin", "Michaels EMA", "4D", "−1.00", "Bearish"],
   ["Ethereum", "Michaels EMA", "2D", "−1.00", "Bearish"],
   ["Ethereum", "EWMA", "4D", "−1.00", "Bearish"],
-  ["Macro", "Correlation coefficient", "15–120D", "0.28", "Slight bull"],
+  ["Macro", "Correlation coefficient", "15-120D", "0.28", "Slight bull"],
 ];
 
 function TrendVisual({ detail }: { detail: boolean }) {
@@ -87,7 +87,7 @@ function TrendVisual({ detail }: { detail: boolean }) {
     <div className={`research-visual analyst-workspace trend-workspace ${detail ? "is-detail" : ""}`}>
       <header className="workspace-header">
         <div><strong>MTPI</strong><span>Total market cap</span></div>
-        <dl><dt>Snapshot</dt><dd>Jan 17, 2025</dd><dt>Composite</dt><dd className="state-short">−0.91 · Short</dd></dl>
+        <dl><dt>Snapshot</dt><dd>Jan 17, 2025</dd><dt>Composite</dt><dd className="state-short">−0.91, Short</dd></dl>
       </header>
 
       <div className="mtpi-preview-body">
@@ -108,7 +108,7 @@ function TrendVisual({ detail }: { detail: boolean }) {
         </div>
         <ResearchGauge compact label="Medium-term trend" score="−0.91" state="Short" />
       </div>
-      <footer className="workspace-summary"><span>15 inputs</span><span>5 categories</span><strong>Average −0.91 · Short</strong></footer>
+      <footer className="workspace-summary"><span>15 inputs</span><span>5 categories</span><strong>Average −0.91, Short</strong></footer>
     </div>
   );
 }
@@ -140,7 +140,7 @@ function RelativeStrengthVisual({ detail }: { detail: boolean }) {
           </table>
         </div>
         <div className="mini-workstation-chart">
-          <header><strong>ETH/BTC source-workbook trace</strong><span>2017 — 2024</span></header>
+          <header><strong>ETH/BTC workbook trace</strong><span>2017 - 2024</span></header>
           <svg viewBox="0 0 420 150" role="img" aria-label="Schematic reconstruction of the source workbook ETH/BTC trace with model-state markers">
             {[22, 62, 102, 142].map((y) => <line x1="20" x2="410" y1={y} y2={y} key={y} />)}
             <path d="M20 38 L33 70 L48 50 L63 75 L79 68 L95 89 L112 103 L130 116 L148 125 L168 113 L188 98 L207 76 L226 88 L245 70 L264 50 L282 67 L300 64 L320 76 L340 69 L361 78 L383 82 L410 91" />

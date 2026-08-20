@@ -82,9 +82,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <h1>{project.name}</h1>
           <p className="case-summary">{project.summary}</p>
           <div className="case-hero-facts">
-            <div><span>Contribution</span><strong>{project.role}</strong></div>
-            <div><span>Methods</span><strong>{project.tools.join(" · ")}</strong></div>
-            <div><span>Outcome</span><strong>{project.outcome}</strong></div>
+            <div><span>What I did</span><strong>{project.role}</strong></div>
+            <div><span>Built with</span><strong>{project.tools.join(", ")}</strong></div>
+            <div><span>What came out of it</span><strong>{project.outcome}</strong></div>
           </div>
         </header>
 
@@ -95,31 +95,30 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {project.disclaimer && (
           <aside className="research-notice" data-reveal>
             <Info size={21} weight="light" aria-hidden="true" />
-            <p><strong>Research disclosure</strong>{project.disclaimer}</p>
+            <p><strong>A note on the work</strong>{project.disclaimer}</p>
           </aside>
         )}
 
         <CaseEvidence type={project.visual} />
 
         <section className="case-framing" data-reveal>
-          <div><p>Context</p><h2>The challenge</h2><span>{project.challenge}</span></div>
-          <div><p>Objective</p><h2>The goal</h2><span>{project.goal}</span></div>
+          <div><p>The question behind it</p><h2>What I was trying to understand</h2><span>{project.challenge}</span></div>
+          <div><p>The standard I set</p><h2>What a useful answer needed</h2><span>{project.goal}</span></div>
         </section>
 
         <section className="case-role" data-reveal>
-          <div><p>My contribution</p><h2>The analytical work behind the result.</h2></div>
+          <div><p>My part</p><h2>Where I did the work.</h2></div>
           <ul>{project.responsibilities.map((item) => <li key={item}>{item}</li>)}</ul>
         </section>
 
         <section className="case-process">
           <header data-reveal>
-            <p>Process and key decisions</p>
-            <h2>Build the reasoning so it can be reviewed.</h2>
+            <p>Process</p>
+            <h2>How I got to an answer.</h2>
           </header>
           <div className="case-process-list">
-            {project.process.map((step, index) => (
+            {project.process.map((step) => (
               <article data-reveal key={step.title}>
-                <span>0{index + 1}</span>
                 <h3>{step.title}</h3>
                 <p>{step.body}</p>
               </article>
@@ -129,21 +128,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         <section className="case-decisions" data-reveal>
           <div>
-            <p>Key decisions</p>
+            <p>Where judgment entered</p>
             <ul>{project.decisions.map((decision) => <li key={decision}>{decision}</li>)}</ul>
           </div>
           <div className="case-result">
-            <p>Outcome</p>
-            <h2>What the system produced</h2>
-            <strong>{project.outcome}</strong>
+            <p>Takeaway</p>
+            <h2>What stayed with me</h2>
             <blockquote>{project.lessons}</blockquote>
           </div>
         </section>
 
         <section className="next-project" data-reveal>
-          <p>Continue exploring</p>
+          <p>More work</p>
           <Link href={`/work/${nextProject.slug}`}>
-            <span>Next case study</span>
+            <span>Read the next project</span>
             <strong>{nextProject.name}</strong>
             <ArrowRight size={28} weight="bold" aria-hidden="true" />
           </Link>
@@ -151,9 +149,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </article>
 
       <footer className="case-footer">
-        <p>Interested in the analysis behind the work?</p>
+        <p>If this is the kind of work you value, I would like to hear from you.</p>
         <a href={`mailto:${profile.email}`}>
-          Get in touch
+          Email me
           <ArrowUpRight size={19} weight="bold" aria-hidden="true" />
         </a>
       </footer>

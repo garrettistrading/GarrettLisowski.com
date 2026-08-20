@@ -73,7 +73,7 @@ export function CareerTimeline() {
       <section className="additional-experience" aria-labelledby="additional-experience-title">
         <header>
           <p>Additional experience</p>
-          <h3 id="additional-experience-title">Concurrent ventures and applied market work.</h3>
+          <h3 id="additional-experience-title">Three other ways I learned to own the outcome.</h3>
         </header>
         <div>
           {additionalExperience.map((item) => (

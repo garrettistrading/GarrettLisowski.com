@@ -65,7 +65,7 @@ export default function Home() {
             </div>
             <figcaption>
               <h1 id="profile-name">Garrett Lisowski</h1>
-              <p>Financial analyst · Investment research</p>
+              <p>Financial analyst focused on investment research.</p>
             </figcaption>
           </figure>
 
@@ -86,11 +86,11 @@ export default function Home() {
 
           <div className="hero-statement">
             <p className="hero-profile-line">
-              <strong>Economics · Financial modeling · Strategy</strong>
+              <strong>Financial modeling and market research</strong>
               <span>{profile.location}</span>
             </p>
             <p className="hero-support">
-              I combine hands-on financial modeling and market research with client-facing operating experience to make complex decisions clearer.
+              I care about the point where a model leaves the spreadsheet and becomes a decision someone can stand behind.
             </p>
             <a className="primary-action" href="#experience">
               View experience
@@ -102,28 +102,28 @@ export default function Home() {
         <section className="experience-section" id="experience">
           <header className="portfolio-section-heading compact-heading" data-reveal>
             <p>Experience</p>
-            <h2>Analysis backed by operating experience.</h2>
+            <h2>A correct model can still be useless.</h2>
             <span>
-              Financial analysis, commercial execution, and the decisions connecting them.
+              The assumptions need to be visible, the numbers defensible, and the answer clear enough for someone else to use.
             </span>
           </header>
           <div className="experience-evidence" aria-label="Selected evidence" data-reveal>
-            <div><strong>3.78</strong><span>Economics GPA</span></div>
-            <div><strong>150+</strong><span>Commercial and enterprise accounts managed</span></div>
-            <div><strong>100+</strong><span>Equities covered in investment-committee research</span></div>
+            <div><strong>3.78</strong><span>GPA in Economics</span></div>
+            <div><strong>150+</strong><span>Commercial and enterprise accounts</span></div>
+            <div><strong>100+</strong><span>Stocks reviewed for an investment committee</span></div>
           </div>
           <CareerTimeline />
           <p className="experience-context" data-reveal>
-            Metrics reflect the role-specific periods shown. Commercially sensitive source files and client information are omitted.
+            I have left out client names, source files, and anything commercially sensitive.
           </p>
         </section>
 
         <section className="selected-work" id="work">
           <header className="portfolio-section-heading compact-heading" data-reveal>
             <p>Selected work</p>
-            <h2>Research systems built to make evidence reviewable.</h2>
+            <h2>The finished work, not just the headline.</h2>
             <span>
-              Selected examples of how I structure financial evidence and make analytical reasoning reviewable.
+              Each case study shows the model, the choices behind it, and the limits I did not try to hide.
             </span>
           </header>
 
@@ -144,7 +144,7 @@ export default function Home() {
                   </div>
                 </Link>
                 <div className="project-card-meta">
-                  <p className="project-role"><span>Contribution</span>{project.role}</p>
+                  <p className="project-role"><span>What I did</span>{project.role}</p>
                   <ul className="project-proof-points">
                     {project.proofPoints.map((point) => <li key={point}>{point}</li>)}
                   </ul>
@@ -157,7 +157,7 @@ export default function Home() {
         <section className="background-section" id="background">
           <header className="portfolio-section-heading compact-heading" data-reveal>
             <p>Education and leadership</p>
-            <h2>Economics, research, and the tools to execute.</h2>
+            <h2>The foundation behind the work.</h2>
           </header>
 
           <div className="credential-grid" data-reveal>
@@ -178,8 +178,8 @@ export default function Home() {
 
           <div className="skills-story" data-reveal>
             <div className="skills-intro">
-              <p>Skills and tools</p>
-              <h3>The working toolkit.</h3>
+              <p>Skills</p>
+              <h3>Tools I have used on real work.</h3>
             </div>
             <div className="skill-groups">
               {skillGroups.map((group) => (
@@ -195,7 +195,7 @@ export default function Home() {
         <section className="contact-section" id="contact">
           <div className="contact-copy" data-reveal>
             <p>Contact</p>
-            <h2>Building a finance team that values clear thinking? Let’s talk.</h2>
+            <h2>Looking for someone who can do the analysis and explain what matters?</h2>
           </div>
           <div className="contact-details" data-reveal>
             <a href={`mailto:${profile.email}`}>
@@ -216,7 +216,7 @@ export default function Home() {
           <span className="wordmark-symbol">GL</span>
           <span>{profile.name}</span>
         </a>
-        <p>Financial analysis · Investment research · Strategy</p>
+        <p>Financial models, market research, and clear communication.</p>
         <span>{new Date().getFullYear()}</span>
       </footer>
     </main>

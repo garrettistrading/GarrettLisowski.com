@@ -1323,7 +1323,7 @@ ul { margin: 0; padding: 0; }
 .case-process-list article { min-height: 300px; padding: 28px 36px 20px 0; }
 .case-process-list article + article { border-left: 1px solid var(--line); padding-left: 36px; }
 .case-process-list article > span { color: var(--green-light); font-size: 11px; }
-.case-process-list h3 { font-family: var(--sans); font-size: 28px; font-weight: 600; letter-spacing: -.01em; line-height: 1.1; margin: 55px 0 17px; }
+.case-process-list h3 { font-family: var(--sans); font-size: 28px; font-weight: 600; letter-spacing: -.01em; line-height: 1.1; margin: 8px 0 17px; }
 .case-process-list p { color: var(--slate); font-size: 14px; line-height: 1.65; margin: 0; }
 .case-decisions { border-top: 1px solid var(--line-strong); display: grid; gap: 100px; grid-template-columns: .8fr 1.2fr; margin: 0 auto; padding: 100px 0 130px; width: var(--container); }
 .case-decisions ul { list-style: none; margin-top: 28px; }

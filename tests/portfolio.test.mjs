@@ -7,7 +7,7 @@ const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 test("featured work contains the educational hedge model and evidence-backed research systems", async () => {
   const portfolio = await read("lib/portfolio.ts");
   assert.match(portfolio, /executive-deferred-compensation-trs-hedge-model/);
-  assert.match(portfolio, /Independent educational prototype using fictional plan data/);
+  assert.match(portfolio, /I built this independently with fictional plan data and sample values/);
   assert.match(portfolio, /market-trend-probability-indicator/);
   assert.match(portfolio, /relative-strength-portfolio-research/);
   assert.doesNotMatch(portfolio, /slug: "financial-modeling-reporting"/);

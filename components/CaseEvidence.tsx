@@ -24,17 +24,17 @@ function scorePath() {
 const signalRows = [
   ["Perpetual", "EWMA", "3D", "8", "−1.00", "Bearish"],
   ["Perpetual", "SALMA RED K", "3D", "Length 10", "−1.00", "Bearish"],
-  ["Perpetual", "Michaels EMA", "2D", "8 – 13", "−1.00", "Bearish"],
+  ["Perpetual", "Michaels EMA", "2D", "8 - 13", "−1.00", "Bearish"],
   ["Perpetual", "HSMA", "4D", "8", "−1.00", "Bearish"],
   ["Perpetual", "T3 Striped [Loxx]", "4D", "Period 5", "−1.00", "Bearish"],
-  ["Oscillators", "Regularized-moving-average oscillator suite", "2D", "Length 3 · Reg. length 21", "−1.00", "Bearish"],
-  ["Oscillators", "Normalized KAMA oscillator", "4D", "6 · 19 · 5 · 8", "−1.00", "Bearish"],
-  ["Oscillators", "Sebastine Trend Catcher", "2D", "5 · 4", "−1.00", "Bearish"],
-  ["Oscillators", "Kalman Hull RSI", "3D", "4 · 0.13 · 4", "−1.00", "Bearish"],
+  ["Oscillators", "Regularized-moving-average oscillator suite", "2D", "Length 3 / Reg. length 21", "−1.00", "Bearish"],
+  ["Oscillators", "Normalized KAMA oscillator", "4D", "6 / 19 / 5 / 8", "−1.00", "Bearish"],
+  ["Oscillators", "Sebastine Trend Catcher", "2D", "5 / 4", "−1.00", "Bearish"],
+  ["Oscillators", "Kalman Hull RSI", "3D", "4 / 0.13 / 4", "−1.00", "Bearish"],
   ["Oscillators", "Trend Following MA’s", "3D", "EMA 2", "−1.00", "Bearish"],
   ["Bitcoin", "T3S", "5D", "4", "−1.00", "Bearish"],
-  ["Bitcoin", "Michaels EMA", "4D", "4 · 6", "−1.00", "Bearish"],
-  ["Ethereum", "Michaels EMA", "2D", "5 · 12", "−1.00", "Bearish"],
+  ["Bitcoin", "Michaels EMA", "4D", "4 / 6", "−1.00", "Bearish"],
+  ["Ethereum", "Michaels EMA", "2D", "5 / 12", "−1.00", "Bearish"],
   ["Ethereum", "EWMA", "4D", "4", "−1.00", "Bearish"],
   ["Macro correlation", "Correlation coefficient", "15D / 30D / 90D / 120D", "N/A", "0.28", "Slight bull"],
 ];
@@ -53,7 +53,7 @@ function categoryClass(category: string) { return `category-cell category-${cate
 function ForwardChart() {
   return (
     <article className="workstation-panel forward-panel">
-      <header><div><p>Historical test sequence</p><h3>Total score</h3></div><span>Jan 05 — Feb 05, 2025</span></header>
+      <header><div><p>Score history</p><h3>Total score</h3></div><span>Jan 05 - Feb 05, 2025</span></header>
       <div className="platform-chart compact-platform-chart">
         <svg viewBox="0 0 900 285" role="img" aria-label="Historical MTPI score from January 5 through February 5, 2025">
           {[20, 79.5, 139, 198.5, 258].map((y, index) => <g key={y}><line x1="52" x2="858" y1={y} y2={y} /><text x="7" y={y + 4}>{["1.0", "0.5", "0.0", "−0.5", "−1.0"][index]}</text></g>)}
@@ -68,7 +68,7 @@ function ForwardChart() {
         <div className="platform-x-axis"><span>Jan 05</span><span>Jan 14</span><span>Jan 22</span><span>Jan 30</span><span>Feb 05</span></div>
       </div>
       <footer><span>Observed high 0.82</span><span>Observed low −0.91</span></footer>
-      <p className="panel-method-note">This sequence extends beyond the January 17 matrix snapshot; it shows score evolution, not investment performance.</p>
+      <p className="panel-method-note">The line continues past the January 17 matrix. It tracks the model score, not investment performance.</p>
     </article>
   );
 }
@@ -77,9 +77,9 @@ function MtpiEvidence() {
   return (
     <section className="case-evidence research-evidence" aria-labelledby="evidence-title">
       <header className="case-evidence-heading" data-reveal>
-        <p>Research workspace</p>
-        <h2 id="evidence-title">The signal, its inputs, and the evidence beside it.</h2>
-        <span>A cleaned-up web workspace keeps the indicator matrix central while the gauge, macro context, and historical test remain visible in the same review path.</span>
+        <p>Inside the model</p>
+        <h2 id="evidence-title">A composite score is only useful when I can see what is pulling it.</h2>
+        <span>The matrix shows the raw readings. The gauge and charts show how I combined them and checked the result.</span>
       </header>
 
       <div className="evidence-stat-row" data-reveal>
@@ -88,7 +88,7 @@ function MtpiEvidence() {
       </div>
 
       <section className="mtpi-system-canvas" data-reveal aria-labelledby="matrix-title">
-        <header className="workspace-titlebar"><div><strong>MTPI</strong><span>Whole market trend · Total market cap</span></div><dl><dt>Updated</dt><dd>Jan 17, 2025</dd><dt>Average</dt><dd>−0.91 · Short</dd></dl></header>
+        <header className="workspace-titlebar"><div><strong>MTPI</strong><span>Whole market trend, total market cap</span></div><dl><dt>Updated</dt><dd>Jan 17, 2025</dd><dt>Average</dt><dd>−0.91, Short</dd></dl></header>
         <div className="mtpi-system-main">
           <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable MTPI indicator matrix">
             <table className="full-signal-table">
@@ -110,7 +110,7 @@ function MtpiEvidence() {
 
       <div className="mtpi-analysis-grid" data-reveal>
         <article className="workstation-panel correlation-panel">
-          <header><div><p>Macro context</p><h3>BTC correlation table</h3></div><span>15D · 30D · 90D · 120D</span></header>
+          <header><div><p>Macro check</p><h3>BTC correlation table</h3></div><span>15D / 30D / 90D / 120D</span></header>
           <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable macro-correlation table">
             <table className="correlation-heatmap full-correlation-table">
               <caption>Historical BTC macro correlations</caption>
@@ -121,15 +121,15 @@ function MtpiEvidence() {
         </article>
         <ForwardChart />
       </div>
-      <p className="workspace-disclosure">Historical research snapshot. It is not a live signal or trading recommendation.</p>
+      <p className="workspace-disclosure">This is an old research snapshot, not a live signal or a trading recommendation.</p>
     </section>
   );
 }
 
 const rspsStages = [
   ["01", "Market regime", "TOTAL trend gate"], ["02", "Major allocation", "ETH / BTC"],
-  ["03", "Speculative strength", "SOL / ETH · SOL / BTC"], ["04", "Small-cap budget", "OTHERS.D"],
-  ["05", "Candidate selection", "Market cap · trend · beta · score"],
+  ["03", "Speculative strength", "SOL / ETH and SOL / BTC"], ["04", "Small-cap budget", "OTHERS.D"],
+  ["05", "Candidate selection", "Market cap, trend, beta, score"],
 ];
 
 const pairwiseRows = [
@@ -140,10 +140,10 @@ const pairwiseRows = [
 
 const candidateRows = [
   ["XRP", "$179,543,392,162", "1", "1", "0.72", "0.40", "0.56", "2"],
-  ["SUI", "$12,505,026,341", "—", "—", "1.04", "0.72", "0.88", "1"],
-  ["DOGE", "$49,391,582,499", "—", "—", "1.57", "0.78", "1.18", "2"],
-  ["SHIB", "$11,097,647,584", "—", "—", "1.43", "0.73", "1.08", "2"],
-  ["LINK", "$15,906,687,579", "1", "—", "1.02", "0.62", "0.82", "1"],
+  ["SUI", "$12,505,026,341", "N/A", "N/A", "1.04", "0.72", "0.88", "1"],
+  ["DOGE", "$49,391,582,499", "N/A", "N/A", "1.57", "0.78", "1.18", "2"],
+  ["SHIB", "$11,097,647,584", "N/A", "N/A", "1.43", "0.73", "1.08", "2"],
+  ["LINK", "$15,906,687,579", "1", "N/A", "1.02", "0.62", "0.82", "1"],
 ];
 
 const tracePanels = [
@@ -170,9 +170,9 @@ function RspsEvidence() {
   return (
     <section className="case-evidence research-evidence" aria-labelledby="evidence-title">
       <header className="case-evidence-heading" data-reveal>
-        <p>Research workspace</p>
-        <h2 id="evidence-title">A repeatable review path from regime to security selection.</h2>
-        <span>Recorded pairwise states feed the same five-stage research logic and candidate screen. Structural chart traces recreate the workbook layout without representing them as numeric price series.</span>
+        <p>Inside the workbook</p>
+        <h2 id="evidence-title">The order of questions matters.</h2>
+        <span>I started with the market regime, moved through the pairwise readings, and looked at individual assets last.</span>
       </header>
 
       <div className="evidence-stat-row" data-reveal>
@@ -181,20 +181,20 @@ function RspsEvidence() {
       </div>
 
       <section className="rsps-workstation" data-reveal aria-labelledby="workstation-title">
-        <header className="workspace-titlebar"><div><strong>RSPS</strong><span id="workstation-title">Relative-strength workstation</span></div><dl><dt>Snapshot</dt><dd>Oct 02, 2024</dd><dt>Review</dt><dd>Pairwise · regime · selection</dd></dl></header>
+        <header className="workspace-titlebar"><div><strong>RSPS</strong><span id="workstation-title">Relative-strength workbook</span></div><dl><dt>Snapshot</dt><dd>Oct 02, 2024</dd><dt>Review</dt><dd>Pairwise, regime, selection</dd></dl></header>
         <div className="rsps-chart-grid">
           {tracePanels.map((panel, index) => <TracePanel panel={panel} wide={index === 0} key={panel.title} />)}
         </div>
-        <footer className="workstation-legend"><span><i className="marker-positive" />Positive model state</span><span><i className="marker-negative" />Negative model state</span><p>Schematic reconstruction of the source workbook’s visual structure. No price or performance values are represented.</p></footer>
+        <footer className="workstation-legend"><span><i className="marker-positive" />Positive model state</span><span><i className="marker-negative" />Negative model state</span><p>I recreated the workbook&apos;s visual structure here. The traces do not show prices or performance.</p></footer>
       </section>
 
       <section className="workflow-section" data-reveal aria-labelledby="workflow-title">
-        <header><p>System logic</p><h3 id="workflow-title">Five questions, answered in sequence.</h3></header>
+        <header><p>Research sequence</p><h3 id="workflow-title">The five questions I worked through.</h3></header>
         <div className="workflow-table" role="list">{rspsStages.map(([number, title, detail]) => <div role="listitem" key={number}><span>{number}</span><strong>{title}</strong><p>{detail}</p><i>→</i></div>)}</div>
       </section>
 
       <section className="research-table-section" data-reveal aria-labelledby="pairwise-title">
-        <header><div><p>Recorded model states</p><h3 id="pairwise-title">Pairwise trend models</h3></div><span>Exact inputs, horizon, averages, and 80/20 allocation logic from the historical snapshot.</span></header>
+        <header><div><p>Recorded readings</p><h3 id="pairwise-title">Pairwise trend models</h3></div><span>These are the inputs, time horizon, averages, and 80/20 rules from the historical snapshot.</span></header>
         <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable pairwise model table"><table className="pairwise-data-table">
           <caption>Historical RSPS pairwise model states</caption>
           <thead><tr><th scope="col">Model</th><th scope="col">Inputs</th><th scope="col">Frame</th><th scope="col">Average</th><th scope="col">State</th><th scope="col">Allocation logic</th></tr></thead>
@@ -204,14 +204,14 @@ function RspsEvidence() {
       </section>
 
       <section className="research-table-section candidate-section" data-reveal aria-labelledby="candidate-title">
-        <header><div><p>Historical candidate screen</p><h3 id="candidate-title">Multi-factor selection table</h3></div><span>Selected ultra-large-cap rows show the market-cap, trend, beta, and score organization.</span></header>
+        <header><div><p>Candidate screen</p><h3 id="candidate-title">Multi-factor selection table</h3></div><span>This sample shows how I compared market cap, trend, beta, and the final score.</span></header>
         <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable candidate-screening table"><table className="candidate-data-table">
           <caption>Selected historical candidate screening rows</caption>
           <thead><tr><th scope="col">Ticker</th><th scope="col">Market cap</th><th scope="col">Bull USD</th><th scope="col">Bull SOL</th><th scope="col">BTC beta</th><th scope="col">SOL beta</th><th scope="col">Avg beta</th><th scope="col">Score</th></tr></thead>
           <tbody>{candidateRows.map(([ticker, marketCap, usd, sol, btcBeta, solBeta, avgBeta, score]) => <tr key={ticker}><th scope="row">{ticker}</th><td>{marketCap}</td><td>{usd}</td><td>{sol}</td><td>{btcBeta}</td><td>{solBeta}</td><td>{avgBeta}</td><td><b>{score}</b></td></tr>)}</tbody>
         </table></div>
         <p className="table-scroll-cue">Swipe or use Shift + scroll to review all columns.</p>
-        <p className="table-disclosure">Static historical research snapshot. Values are not current holdings, prices, or recommendations.</p>
+        <p className="table-disclosure">These values are historical. They are not current holdings, prices, or recommendations.</p>
       </section>
     </section>
   );
@@ -249,9 +249,9 @@ function DeferredCompEvidence() {
   return (
     <section className="case-evidence research-evidence trs-evidence" aria-labelledby="evidence-title">
       <header className="case-evidence-heading" data-reveal>
-        <p>Educational model</p>
-        <h2 id="evidence-title">Exposure, settlement, and controls in one monthly review.</h2>
-        <span>Every value below is fictional and illustrates the model structure. The presentation focuses on calculations, review logic, and operating controls.</span>
+        <p>Inside the model</p>
+        <h2 id="evidence-title">The model only works if the trail is complete.</h2>
+        <span>A reviewer should be able to move from exposure to order to settlement without guessing where a number came from.</span>
       </header>
 
       <div className="evidence-stat-row" data-reveal>
@@ -263,7 +263,7 @@ function DeferredCompEvidence() {
 
       <section className="trs-model-canvas" data-reveal aria-labelledby="trs-model-title">
         <header className="workspace-titlebar">
-          <div><strong>TRS Hedge Model</strong><span id="trs-model-title">Monthly management review</span></div>
+          <div><strong>TRS Hedge Model</strong><span id="trs-model-title">Monthly review</span></div>
           <dl><dt>Model date</dt><dd>Illustrative</dd><dt>Data</dt><dd>Fictional</dd></dl>
         </header>
 
@@ -296,7 +296,7 @@ function DeferredCompEvidence() {
 
       <div className="trs-analysis-grid" data-reveal>
         <article className="workstation-panel trs-settlement-panel">
-          <header><div><p>Settlement calculation</p><h3>Simplified monthly estimate</h3></div><span>Illustrative sample</span></header>
+          <header><div><p>Settlement</p><h3>Monthly estimate</h3></div><span>Fictional sample</span></header>
           <dl>
             <div><dt>Total-return leg</dt><dd>$205,712</dd></div>
             <div><dt>Financing expense</dt><dd>($58,247)</dd></div>
@@ -321,7 +321,7 @@ function DeferredCompEvidence() {
       </div>
 
       <section className="research-table-section trs-proxy-section" data-reveal aria-labelledby="proxy-title">
-        <header><div><p>Proxy selection</p><h3 id="proxy-title">ETF mapping review</h3></div><span>Sample values demonstrate the decision fields. They are not current market statistics or recommendations.</span></header>
+        <header><div><p>Choosing proxies</p><h3 id="proxy-title">ETF mapping review</h3></div><span>I used sample values to show what I would compare. They are not current market statistics or recommendations.</span></header>
         <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable illustrative ETF proxy table">
           <table className="trs-proxy-table">
             <caption>Illustrative proxy-selection review</caption>
@@ -332,7 +332,7 @@ function DeferredCompEvidence() {
       </section>
 
       <section className="research-table-section trs-controls-section" data-reveal aria-labelledby="controls-title">
-        <header><div><p>Controls and reconciliation</p><h3 id="controls-title">Exceptions routed before sign-off</h3></div><span>The control layer keeps model output tied to source completeness, tolerances, and reviewer accountability.</span></header>
+        <header><div><p>Controls</p><h3 id="controls-title">What I would check before sign-off</h3></div><span>Each test is meant to catch a missing input or an out-of-tolerance result before the review is complete.</span></header>
         <div className="research-table-scroll" tabIndex={0} aria-label="Scrollable illustrative control table">
           <table className="trs-controls-table">
             <caption>Illustrative monthly control results</caption>
@@ -342,7 +342,7 @@ function DeferredCompEvidence() {
         </div>
       </section>
 
-      <p className="workspace-disclosure">Educational illustration only. No real participant, employer, client, or counterparty data is shown.</p>
+      <p className="workspace-disclosure">I built this as an educational example. It contains no real participant, employer, client, or counterparty data.</p>
     </section>
   );
 }

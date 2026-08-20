@@ -28,10 +28,10 @@ export default function OpenGraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <div style={{ fontSize: 76, fontWeight: 500, letterSpacing: "-0.055em", lineHeight: 0.95, maxWidth: 960 }}>
-            Financial analysis, research, and reporting for clearer decisions.
+            Financial models, market research, and reporting people can use.
           </div>
           <div style={{ color: "#7a7a7a", fontSize: 26 }}>
-            Financial modeling · Investment research · Portfolio analytics
+            Financial modeling, investment research, portfolio analytics
           </div>
         </div>
       </div>
