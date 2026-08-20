@@ -2172,14 +2172,23 @@ html.portfolio-intro-active { overflow: hidden; }
 .profile-home .selected-work,
 .profile-home .background-section {
   border-top: 1px solid var(--line);
-  padding: 92px 0 104px;
+  padding: 72px 0 86px;
   width: var(--profile-width);
 }
 
 .profile-home .portfolio-section-heading.compact-heading {
-  display: block;
-  margin-bottom: 52px;
-  max-width: 650px;
+  align-items: center;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: auto minmax(40px, 1fr);
+  margin-bottom: 28px;
+  max-width: none;
+}
+
+.profile-home .portfolio-section-heading.compact-heading::after {
+  background: var(--line-strong);
+  content: "";
+  height: 1px;
 }
 
 .profile-home .portfolio-section-heading > p,
@@ -2193,6 +2202,19 @@ html.portfolio-intro-active { overflow: hidden; }
   font-weight: 700;
   letter-spacing: .18em;
   text-transform: uppercase;
+}
+
+.profile-home .portfolio-section-heading > p {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.profile-home .portfolio-section-heading > p span {
+  color: #d5d6da;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .08em;
 }
 
 .profile-home .portfolio-section-heading h2 {
@@ -2216,22 +2238,22 @@ html.portfolio-intro-active { overflow: hidden; }
   background: #101216;
   border: 1px solid var(--line-strong);
   border-radius: 17px;
-  margin-bottom: 54px;
+  margin-bottom: 40px;
   overflow: hidden;
 }
 .profile-home .experience-evidence div {
   align-items: flex-start;
   flex-direction: column;
   gap: 5px;
-  min-height: 100px;
-  padding: 22px;
+  min-height: 86px;
+  padding: 18px 20px;
 }
-.profile-home .experience-evidence div + div { border-color: var(--line); padding-left: 22px; }
+.profile-home .experience-evidence div + div { border-color: var(--line); padding-left: 20px; }
 .profile-home .experience-evidence strong { font-size: 27px; letter-spacing: -.04em; }
 .profile-home .experience-evidence span { color: #8f929b; font-size: 11px; }
 
 .profile-home .career-timeline {
-  gap: 28px;
+  gap: 24px;
   grid-template-columns: minmax(260px,.78fr) minmax(0,1.22fr);
 }
 .profile-home .timeline-index { border-color: var(--line-strong); }
@@ -2258,29 +2280,30 @@ html.portfolio-intro-active { overflow: hidden; }
   border: 1px solid var(--line-strong);
   border-radius: 18px;
   min-height: 0;
-  padding: 28px;
+  padding: 26px;
 }
 .profile-home .timeline-meta { border-color: var(--line); color: #737781; }
 .profile-home .timeline-meta span:first-child { color: #d9dade; }
 .profile-home .timeline-detail h3 { font-size: clamp(32px, 4.5vw, 43px); margin: 29px 0 13px; }
-.profile-home .timeline-summary { color: #a8aab1; font-size: 16px; margin-bottom: 25px; }
+.profile-home .timeline-summary { color: #a8aab1; font-size: 15px; margin-bottom: 21px; }
 .profile-home .timeline-detail ul { border-color: var(--line-strong); }
-.profile-home .timeline-detail li { border-color: var(--line); color: #c3c4c9; font-size: 13px; padding: 16px 0; }
+.profile-home .timeline-detail li { border-color: var(--line); color: #c3c4c9; font-size: 13px; padding: 14px 0; }
 
 .profile-home .career-timeline .additional-experience {
   border-color: var(--line-strong);
   gap: 34px;
   grid-template-columns: minmax(210px,.65fr) minmax(0,1.35fr);
-  margin-top: 26px;
+  margin-top: 18px;
+  padding-top: 28px;
 }
-.profile-home .additional-experience header h3 { color: #f2f2f4; font-size: 29px; }
+.profile-home .additional-experience header h3 { color: #f2f2f4; font-size: 27px; }
 .profile-home .additional-experience > div,
 .profile-home .additional-experience > div > article { border-color: var(--line); }
 .profile-home .additional-experience strong { color: #e4e4e7; }
 .profile-home .additional-experience span,
 .profile-home .additional-experience time { color: #767983; }
 .profile-home .additional-experience article p { color: #a9abb2; }
-.profile-home .project-list { gap: 76px; }
+.profile-home .project-list { gap: 54px; }
 .profile-home .project-feature { display: block; }
 .profile-home .project-card-link {
   background: #101216;
@@ -2298,7 +2321,7 @@ html.portfolio-intro-active { overflow: hidden; }
   background: #e8e9e7;
   border: 0;
   border-radius: 0;
-  min-height: 410px;
+  min-height: 370px;
   padding: clamp(16px, 3vw, 30px);
 }
 .profile-home .project-preview .research-visual {
@@ -2321,7 +2344,7 @@ html.portfolio-intro-active { overflow: hidden; }
   display: grid;
   gap: 28px;
   grid-template-columns: 1fr auto;
-  padding: 28px 30px 30px;
+  padding: 24px 26px 26px;
 }
 .profile-home .project-information > svg {
   color: #7e818a;
@@ -2361,13 +2384,13 @@ html.portfolio-intro-active { overflow: hidden; }
 .profile-home .credential-grid {
   gap: 18px;
   grid-template-columns: 1fr 1fr;
-  margin-bottom: 88px;
+  margin-bottom: 60px;
 }
 .profile-home .credential-card {
   background: #101216;
   border: 1px solid var(--line-strong);
   border-radius: 18px;
-  padding: 27px;
+  padding: 24px;
 }
 .profile-home .leadership-card { margin-top: 0; }
 .profile-home .credential-card h3 {
@@ -2382,13 +2405,13 @@ html.portfolio-intro-active { overflow: hidden; }
 
 .profile-home .skills-story {
   border-color: var(--line-strong);
-  gap: 44px;
+  gap: 34px;
   grid-template-columns: .55fr 1.45fr;
 }
-.profile-home .skills-intro h3 { font-size: 34px; letter-spacing: -.035em; }
+.profile-home .skills-intro h3 { font-size: 31px; letter-spacing: -.035em; }
 .profile-home .skill-groups,
 .profile-home .skill-groups article { border-color: var(--line); }
-.profile-home .skill-groups article { gap: 22px; grid-template-columns: 150px 1fr; padding: 20px 0; }
+.profile-home .skill-groups article { gap: 22px; grid-template-columns: 150px 1fr; padding: 17px 0; }
 .profile-home .skill-groups h4 { font-size: 16px; }
 .profile-home .skill-groups li { color: #a4a6ad; font-size: 12px; }
 .profile-home .skill-groups li::after { color: #44474f; }
@@ -2426,17 +2449,17 @@ html.portfolio-intro-active { overflow: hidden; }
 .profile-home .portfolio-footer > span { color: #696c75; }
 
 .profile-home .focus-scale-target {
-  filter: blur(var(--focus-blur, 1.4px)) brightness(var(--focus-brightness, .62));
+  filter: blur(var(--focus-blur, .35px)) brightness(var(--focus-brightness, .86));
   position: relative;
-  scale: var(--focus-scale, .84);
-  translate: 0 var(--focus-translate, 38px);
+  scale: var(--focus-scale, .95);
+  translate: 0 var(--focus-translate, 14px);
   transform-origin: center center;
   transition: opacity 180ms ease-out, filter 220ms ease-out, scale 240ms cubic-bezier(.2,.8,.2,1), translate 240ms cubic-bezier(.2,.8,.2,1), transform 650ms cubic-bezier(.2,.8,.2,1);
   will-change: filter, opacity, scale, translate;
 }
 
 .profile-home .focus-scale-target:not(.reveal-pending),
-.profile-home .focus-scale-target.reveal-visible { opacity: var(--focus-opacity, .34); }
+.profile-home .focus-scale-target.reveal-visible { opacity: var(--focus-opacity, .72); }
 
 .profile-home .focus-scale-target.is-scroll-focus { z-index: 3; }
 
@@ -2459,6 +2482,14 @@ html.portfolio-intro-active { overflow: hidden; }
   .profile-home .credential-grid { grid-template-columns: 1fr; }
   .profile-home .skills-story { grid-template-columns: 1fr; }
   .profile-home .skills-intro { position: static; }
+  .profile-home .focus-scale-target,
+  .profile-home .focus-scale-target.is-scroll-focus {
+    filter: none;
+    opacity: 1;
+    scale: 1;
+    translate: 0;
+    will-change: auto;
+  }
 }
 
 @media (max-width: 540px) {
@@ -2480,8 +2511,8 @@ html.portfolio-intro-active { overflow: hidden; }
   .profile-home .hero-support { font-size: 15px; }
   .profile-home .experience-section,
   .profile-home .selected-work,
-  .profile-home .background-section { padding: 82px 0 92px; }
-  .profile-home .portfolio-section-heading.compact-heading { margin-bottom: 40px; }
+  .profile-home .background-section { padding: 58px 0 68px; }
+  .profile-home .portfolio-section-heading.compact-heading { margin-bottom: 22px; }
   .profile-home .portfolio-section-heading h2 { font-size: 34px; }
   .profile-home .experience-evidence { grid-template-columns: 1fr; }
   .profile-home .experience-evidence div { min-height: 0; padding: 17px 19px; }
@@ -2503,15 +2534,16 @@ html.portfolio-intro-active { overflow: hidden; }
   .profile-home .timeline-detail { border-radius: 15px; padding: 21px; }
   .profile-home .timeline-meta { grid-template-columns: 1fr; }
   .profile-home .timeline-meta span { text-align: left; }
-  .profile-home .project-list { gap: 58px; }
+  .profile-home .project-list { gap: 44px; }
   .profile-home .project-card-link { border-radius: 17px; }
-  .profile-home .project-preview { min-height: 325px; padding: 10px; }
+  .profile-home .project-preview { min-height: 285px; padding: 10px; }
   .profile-home .project-information { padding: 22px 20px 23px; }
   .profile-home .project-information h3 { font-size: 26px; }
   .profile-home .project-summary { font-size: 12px; }
   .profile-home .project-role { grid-template-columns: 1fr; }
-  .profile-home .credential-card { padding: 23px; }
-  .profile-home .skills-story { gap: 30px; }
+  .profile-home .credential-card { padding: 21px; }
+  .profile-home .credential-grid { gap: 14px; margin-bottom: 48px; }
+  .profile-home .skills-story { gap: 24px; padding-top: 28px; }
   .profile-home .skill-groups article { grid-template-columns: 1fr; }
   .profile-home .contact-section { margin-bottom: 76px; padding: 32px 24px; }
   .profile-home .contact-copy h2 { font-size: 34px; }

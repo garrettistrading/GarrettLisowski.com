@@ -9,7 +9,7 @@ export function ScrollReveals() {
     const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const focusElements = Array.from(
       document.querySelectorAll<HTMLElement>(
-        ".profile-home .hero-portrait, .profile-home .hero-statement, .profile-home .portfolio-section-heading, .profile-home .experience-evidence, .profile-home .career-timeline, .profile-home .project-feature, .profile-home .credential-grid, .profile-home .skills-story, .profile-home .contact-section",
+        ".profile-home .hero-portrait, .profile-home .hero-statement, .profile-home .experience-evidence, .profile-home .career-timeline, .profile-home .project-feature, .profile-home .credential-grid, .profile-home .skills-story, .profile-home .contact-section",
       ),
     );
     elements.forEach((element) => element.classList.add("reveal-pending"));
@@ -34,12 +34,12 @@ export function ScrollReveals() {
       const viewportHeight = window.innerHeight;
       const viewportCenter = viewportHeight / 2;
       const maxDistance = viewportHeight * 0.58;
-      const isCompact = window.innerWidth <= 560;
-      const minimumScale = isCompact ? 0.88 : 0.84;
-      const maximumScale = isCompact ? 1.045 : 1.08;
-      const minimumOpacity = isCompact ? 0.5 : 0.34;
-      const maximumTranslate = isCompact ? 24 : 38;
-      const maximumBlur = isCompact ? 0.75 : 1.4;
+      const isCompact = window.innerWidth <= 820;
+      const minimumScale = isCompact ? 1 : 0.95;
+      const maximumScale = isCompact ? 1 : 1.025;
+      const minimumOpacity = isCompact ? 1 : 0.72;
+      const maximumTranslate = isCompact ? 0 : 14;
+      const maximumBlur = isCompact ? 0 : 0.35;
       let focusedElement: HTMLElement | null = null;
       let strongestFocus = -1;
 
@@ -77,7 +77,7 @@ export function ScrollReveals() {
         const direction = rect.top + rect.height / 2 < viewportCenter ? -1 : 1;
         const translate = direction * (1 - adjustedFocus) * maximumTranslate;
         const blur = (1 - adjustedFocus) * maximumBlur;
-        const brightness = 0.62 + adjustedFocus * 0.38;
+        const brightness = isCompact ? 1 : 0.86 + adjustedFocus * 0.14;
 
         element.style.setProperty("--focus-scale", scale.toFixed(4));
         element.style.setProperty("--focus-opacity", opacity.toFixed(4));

@@ -101,7 +101,7 @@ export default function Home() {
 
         <section className="experience-section" id="experience">
           <header className="portfolio-section-heading compact-heading" data-reveal>
-            <p>Experience</p>
+            <p><span aria-hidden="true">01</span>Experience</p>
           </header>
           <div className="experience-evidence" aria-label="Selected evidence" data-reveal>
             <div><strong>3.78</strong><span>GPA in Economics</span></div>
@@ -113,7 +113,7 @@ export default function Home() {
 
         <section className="selected-work" id="work">
           <header className="portfolio-section-heading compact-heading" data-reveal>
-            <p>Selected work</p>
+            <p><span aria-hidden="true">02</span>Selected work</p>
           </header>
 
           <div className="project-list">
@@ -145,7 +145,7 @@ export default function Home() {
 
         <section className="background-section" id="background">
           <header className="portfolio-section-heading compact-heading" data-reveal>
-            <p>Education and leadership</p>
+            <p><span aria-hidden="true">03</span>Education and leadership</p>
           </header>
 
           <div className="credential-grid" data-reveal>
