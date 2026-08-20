@@ -195,7 +195,7 @@ export default function Home() {
         <section className="contact-section" id="contact">
           <div className="contact-copy" data-reveal>
             <p>Contact</p>
-            <h2>Looking for someone who can do the analysis and explain what matters?</h2>
+            <h2>Building a finance team that values clear thinking? Let’s talk.</h2>
           </div>
           <div className="contact-details" data-reveal>
             <a href={`mailto:${profile.email}`}>
