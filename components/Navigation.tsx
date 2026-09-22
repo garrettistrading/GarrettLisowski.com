@@ -2,6 +2,7 @@
 
 import { List, X } from "@phosphor-icons/react";
 import Link from "next/link";
+import styles from "./Navigation.module.css";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -32,7 +33,7 @@ export function Navigation() {
   }, [isOpen]);
 
   return (
-    <header className="site-header">
+    <header className={`site-header ${styles.header}`}>
       <nav className="site-nav" aria-label="Primary navigation">
         <Link className="wordmark" href="/" aria-label="Garrett Lisowski home">
           <span className="wordmark-symbol">GL</span>

@@ -1,0 +1,26 @@
+/* Header is the only fixed layer; menus stay inside its stacking context. */
+.header:global(.site-header) { background: transparent; padding: 20px 0; }
+.header :global(.site-nav) { width: min(1200px, calc(100vw - 48px)); min-height: 66px; max-width: none; background: var(--surface, #fefefe); color: var(--text, #19191e); border: 1px solid var(--border, #e4e4eb); border-radius: 999px; box-shadow: 0 8px 32px #26203d0a, 0 2px 5px #26203d04; padding: 9px 10px 9px 17px; grid-template-columns: 1fr auto 1fr; gap: 25px; }
+.header :global(.wordmark) { font-size: 15px; gap: 9px; white-space: nowrap; }
+.header :global(.wordmark-symbol) { background: var(--text, #19191e); color: var(--canvas, #fafafb); border-radius: 10px; width: 35px; height: 35px; font-size: 14px; }
+.header :global(.desktop-nav-links) { gap: 25px; align-items: center; }
+.header :global(.desktop-nav-links a) { color: var(--muted, #62626d); font-size: 14px; line-height: 1.4; font-weight: 500; padding: 10px 0; }
+.header :global(.desktop-nav-links a:hover), .header :global(.desktop-nav-links a.is-active) { color: var(--accent, #6c49c8); }
+.header :global(.nav-contact) { justify-self: end; border: 1px solid var(--border, #e4e4eb); background: var(--soft, #f2f2f6); color: var(--text, #19191e); min-height: 43px; padding: 11px 19px; border-radius: 999px; font-size: 14px; font-weight: 700; white-space: nowrap; }
+.header :global(.nav-contact:hover) { border-color: var(--accent, #6c49c8); }
+.header :global(.nav-menu-button) { display: none; background: transparent; border: 1px solid var(--border, #e4e4eb); border-radius: 50%; width: 43px; height: 43px; align-items: center; justify-content: center; color: var(--text, #19191e); }
+.header :global(.mobile-navigation) { width: min(1200px, calc(100vw - 48px)); margin: 8px auto 0; padding: 15px; border: 1px solid var(--border, #e4e4eb); border-radius: 22px; background: var(--surface, #fefefe); box-shadow: 0 14px 35px #26203d12; }
+.header :global(.mobile-navigation a) { display: block; color: var(--text, #19191e); padding: 13px 16px; border: 0; border-radius: 10px; font-size: 17px; }
+.header :global(.mobile-navigation a:hover) { background: var(--soft, #f2f2f6); }
+@media (max-width: 1050px) {
+  .header :global(.site-nav) { grid-template-columns: 1fr auto; gap: 10px; }
+  .header :global(.desktop-nav-links), .header :global(.nav-contact) { display: none; }
+  .header :global(.nav-menu-button) { display: flex; }
+}
+@media (max-width: 760px) {
+  .header { padding-top: 12px; }
+  .header :global(.site-nav), .header :global(.mobile-navigation) { width: calc(100vw - 24px); }
+  .header :global(.site-nav) { min-height: 64px; padding-left: 13px; }
+}
+@media (prefers-reduced-transparency: reduce) { .header :global(.site-nav) { backdrop-filter: none; } }
+.header :global(.wordmark > span:last-child) { display: inline; }
