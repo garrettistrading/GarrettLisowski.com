@@ -291,10 +291,10 @@ function ProspectForm({
   );
 }
 
-export function SalesLab() {
+export function SalesLab({ initialDemo = "practice" }: { initialDemo?: "practice" | "review" }) {
   const [workspace, setWorkspace] = useState<Workspace>(initialWorkspace);
   const [ready, setReady] = useState(false);
-  const [section, setSection] = useState<Section>("practice");
+  const [section, setSection] = useState<Section>(initialDemo === "review" ? "reviews" : "practice");
   const [filter, setFilter] = useState("All scenarios");
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState<"prospect" | "upload" | "unlock" | null>(
@@ -302,7 +302,13 @@ export function SalesLab() {
   );
   const [selected, setSelected] = useState<Prospect | null>(null);
   const [active, setActive] = useState<ActiveCall | null>(null);
-  const [result, setResult] = useState<Session | null>(null);
+  const [result, setResult] = useState<Session | null>(() => initialDemo === "review" ? {
+    id: "sample", title: "Discovery: finding the cost of missed handoffs", prospect: "Maya Chen",
+    type: "Discovery", date: "2026-09-22T00:00:00.000Z", seconds: 0,
+    messages: parseTranscript(sampleTranscript),
+    review: guidedReview(parseTranscript(sampleTranscript), initialWorkspace().scorecards[0]),
+    scorecard: initialWorkspace().scorecards[0].name, notes: "", mode: "guided",
+  } : null);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");

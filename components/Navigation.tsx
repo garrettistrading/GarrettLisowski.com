@@ -7,10 +7,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const links = [
+  { href: "/work", label: "Work" },
   { href: "/#experience", label: "Experience" },
-  { href: "/#work", label: "Work" },
-  { href: "/sales-lab", label: "Sales Lab" },
-  { href: "/#background", label: "Background" },
+  { href: "/#background", label: "About" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -43,7 +42,8 @@ export function Navigation() {
         <div className="desktop-nav-links">
           {links.map((link) => (
             <Link
-              className={(pathname.startsWith("/work") && link.label === "Work") || (pathname === "/sales-lab" && link.label === "Sales Lab") ? "is-active" : ""}
+              className={pathname.startsWith("/work") && link.label === "Work" ? "is-active" : ""}
+              aria-current={pathname === link.href ? "page" : undefined}
               key={link.href}
               href={link.href}
             >

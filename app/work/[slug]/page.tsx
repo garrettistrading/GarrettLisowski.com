@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Info } from "@phosphor-icons/react
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CaseEvidence } from "@/components/CaseEvidence";
-import { Navigation } from "@/components/Navigation";
+import { ProjectNavigation } from "@/components/ProjectNavigation";
 import { ProjectVisual } from "@/components/ProjectVisual";
 import { ScrollReveals } from "@/components/ScrollReveals";
 import { getProject, profile, projects } from "@/lib/portfolio";
@@ -22,11 +22,11 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   if (!project) return {};
 
   return {
-    title: `${project.name} case study`,
+    title: `${project.name}`,
     description: project.summary,
     alternates: { canonical: `/work/${project.slug}` },
     openGraph: {
-      title: `${project.name} case study | ${profile.name}`,
+      title: `${project.name} | ${profile.name}`,
       description: project.summary,
       type: "article",
       url: `/work/${project.slug}`,
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.name} case study | ${profile.name}`,
+      title: `${project.name} | ${profile.name}`,
       description: project.summary,
       images: ["/opengraph-image"],
     },
@@ -65,7 +65,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <main className="case-main">
       <a className="skip-link" href="#case-content">Skip to case study</a>
-      <Navigation />
+      <ProjectNavigation name={project.visual === "deferred-comp" ? "TRS Hedge Model" : project.visual === "trend" ? "Market Trend Research" : "Relative Strength Research"} />
       <ScrollReveals />
       <script
         type="application/ld+json"
@@ -73,10 +73,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       />
 
       <article id="case-content">
-        <header className="case-hero">
-          <Link className="back-link" href="/#work">
+        <header className="case-hero" id="overview">
+          <Link className="back-link" href="/work">
             <ArrowLeft size={18} weight="bold" aria-hidden="true" />
-            Selected work
+            All projects
           </Link>
           <p className="case-type">{project.type}</p>
           <h1>{project.name}</h1>
@@ -93,28 +93,28 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
 
         {project.disclaimer && (
-          <aside className="research-notice" data-reveal>
+          <aside id="limitations" className="research-notice" data-reveal>
             <Info size={21} weight="light" aria-hidden="true" />
             <p><strong>A note on the work</strong>{project.disclaimer}</p>
           </aside>
         )}
 
-        <CaseEvidence type={project.visual} />
+        <div id="evidence"><CaseEvidence type={project.visual} /></div>
 
-        <section className="case-framing" data-reveal>
+        <section id="method" className="case-framing" data-reveal>
           <div><p>The question behind it</p><h2>What I was trying to understand</h2><span>{project.challenge}</span></div>
           <div><p>The standard I set</p><h2>What a useful answer needed</h2><span>{project.goal}</span></div>
         </section>
 
         <section className="case-role" data-reveal>
-          <div><p>My part</p><h2>Where I did the work.</h2></div>
+          <div><p>My part</p><h2>Scope of the work.</h2></div>
           <ul>{project.responsibilities.map((item) => <li key={item}>{item}</li>)}</ul>
         </section>
 
         <section className="case-process">
           <header data-reveal>
             <p>Process</p>
-            <h2>How I got to an answer.</h2>
+            <h2>Method, step by step.</h2>
           </header>
           <div className="case-process-list">
             {project.process.map((step) => (
@@ -149,7 +149,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </article>
 
       <footer className="case-footer">
-        <p>If this is the kind of work you value, I would like to hear from you.</p>
+        <p>Independent research by <Link href="/">Garrett Lisowski</Link>.</p>
         <a href={`mailto:${profile.email}`}>
           Email me
           <ArrowUpRight size={19} weight="bold" aria-hidden="true" />

@@ -1,0 +1,151 @@
+@font-face { font-family: "Cabinet Grotesk"; src: url("/fonts/cabinet-grotesk-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Cabinet Grotesk"; src: url("/fonts/cabinet-grotesk-medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Cabinet Grotesk"; src: url("/fonts/cabinet-grotesk-bold.woff2") format("woff2"); font-weight: 600 900; font-display: swap; }
+:root { color-scheme: light; --paper: #fff; --paper-deep: #f4f4f2; --paper-light: #fafafa; --ink: #000; --ink-soft: #000; --slate: #000; --green: #000; --green-light: #000; --line: #dededb; --line-strong: #bdbdb8; --on-dark: #000; --signal: #dededb; }
+/* Text remains black in every component and interactive state. Charts retain distinct data marks. */
+body, body :is(main,header,footer,nav,section,article,aside,div,h1,h2,h3,h4,h5,p,a,span,small,strong,b,i,em,label,button,input,textarea,select,option,li,dt,dd,th,td,caption,figcaption,blockquote,time,summary) { color: #000 !important; }
+body { background: #fff; font-family: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif; }
+body svg text { fill: #000 !important; }
+input::placeholder, textarea::placeholder { color: #000; opacity: 1; }
+:focus-visible { outline: 2px solid #000 !important; outline-offset: 5px; }
+::selection { background: #ddd; color: #000; }
+.site-header .site-nav { border-radius: 7px; box-shadow: none; background: #fff; }
+.site-header .wordmark-symbol, .site-header .nav-contact, .site-header .nav-contact:hover { background: #f4f4f2; border: 1px solid #dededb; border-radius: 4px; }
+.site-header .desktop-nav-links a:hover { text-decoration: underline; text-underline-offset: 5px; }
+.skip-link { background: #fff; border: 1px solid #000; z-index: 200; }
+.eyebrow-label { font-size: 13px; letter-spacing: .07em; text-transform: uppercase; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+.outline-action, .underlined-action { display: inline-flex; align-items: center; justify-content: center; gap: 13px; font-size: 16px; font-weight: 700; min-height: 48px; }
+.outline-action { border: 1px solid #000; border-radius: 4px; padding: 12px 22px; background: #fff; }
+.outline-action:hover { background: #eaeae7; }
+.underlined-action { border-bottom: 1px solid #000; }
+.underlined-action:hover { background: #f4f4f2; }
+.project-header { position: sticky; top: 0; z-index: 30; border-bottom: 1px solid #dededb; background: #fff; }
+.project-header nav { width: min(1240px, calc(100% - 64px)); margin: auto; min-height: 90px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.project-brand { font-size: 22px; font-weight: 700; letter-spacing: -.035em; }
+.project-brand span { display: block; font-size: 11px; letter-spacing: .02em; font-weight: 400; margin-top: 3px; }
+.project-links { display: flex; gap: 26px; font-size: 14px; }
+.project-links a { padding: 12px 0; }
+.project-links a:hover { text-decoration: underline; text-underline-offset: 5px; }
+.project-nav-action { display: inline-flex; gap: 9px; align-items: center; border: 1px solid #bdbdb8; padding: 11px 15px; border-radius: 4px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.product-page h1, .directory-hero h1 { font-size: clamp(58px, 6.5vw, 94px); line-height: 1.01; font-weight: 700; letter-spacing: -.055em; margin: 24px 0; }
+.product-page p, .work-directory p { line-height: 1.6; }
+.product-hero { text-align: center; max-width: 1020px; margin: auto; padding: 80px 24px 45px; }
+.product-hero .eyebrow-label { justify-content: center; }
+.product-lead { max-width: 640px; font-size: 21px; margin: 24px auto; }
+.product-actions { display: flex; justify-content: center; align-items: center; gap: 26px; flex-wrap: wrap; margin-top: 30px; }
+.product-demo-note { font-size: 13px; margin-top: 18px; }
+.product-screen { width: min(1120px, calc(100% - 48px)); margin: 12px auto 90px; border: 1px solid #d5d5d1; border-radius: 7px; padding: 10px; background: #f4f4f2; box-shadow: 0 20px 50px #00000008; }
+.screen-label { display: flex; justify-content: space-between; padding: 9px 8px 17px; font-size: 12px; }
+.product-screen img { display: block; width: 100%; height: auto; border: 1px solid #dededb; border-radius: 3px; }
+.product-screen figcaption { font-size: 13px; padding: 18px 8px 10px; }
+.product-section { width: min(1120px, calc(100% - 64px)); margin: auto; border-top: 1px solid #dededb; padding: 70px 0; display: grid; grid-template-columns: 1fr 1.05fr; gap: 80px; scroll-margin-top: 105px; }
+.product-section h2, .product-demo h2 { font-size: clamp(34px, 3.6vw, 50px); line-height: 1.1; letter-spacing: -.04em; font-weight: 600; margin: 20px 0 30px; }
+.practice-steps article { display: flex; gap: 28px; padding: 24px 0; border-bottom: 1px solid #dededb; }
+.practice-steps article:first-child { padding-top: 0; }
+.practice-steps article > span { font-size: 14px; padding-top: 4px; }
+.practice-steps h3, .capability-list h3 { font-size: 23px; margin: 0 0 12px; font-weight: 600; letter-spacing: -.025em; }
+.practice-steps p, .capability-list p { font-size: 17px; margin: 0; }
+.capability-list { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 30px; }
+.capability-list svg { margin-bottom: 15px; }
+.capability-list h3 { font-size: 21px; }
+.product-demo { width: min(1240px, calc(100% - 48px)); margin: 40px auto 60px; background: #f4f4f2; border: 1px solid #dededb; padding: 60px; display: flex; align-items: center; justify-content: space-between; gap: 60px; border-radius: 6px; scroll-margin-top: 110px; }
+.product-demo > div { max-width: 730px; }
+.product-demo .outline-action { flex-shrink: 0; }
+.product-footer { width: min(1240px, calc(100% - 64px)); margin: auto; border-top: 1px solid #dededb; padding: 28px 0 40px; display: flex; justify-content: space-between; gap: 25px; font-size: 14px; }
+.product-footer > a { display: flex; align-items: center; gap: 9px; font-weight: 700; }
+.product-footer span a { text-decoration: underline; text-underline-offset: 3px; }
+.directory-content { width: min(1200px, calc(100% - 64px)); margin: auto; padding: 165px 0 90px; }
+.directory-hero { display: grid; grid-template-columns: 1fr 1fr; column-gap: 80px; align-items: end; margin-bottom: 60px; }
+.directory-hero .eyebrow-label { grid-column: 1 / -1; }
+.directory-hero h1 { margin-bottom: 0; }
+.directory-hero > p:last-child { max-width: 470px; font-size: 20px; margin-bottom: 8px; }
+.directory-flagship { border: 1px solid #dededb; background: #f4f4f2; padding: 40px; border-radius: 6px; display: grid; grid-template-columns: .8fr 1fr; gap: 45px; align-items: center; }
+.directory-flagship h2 { font-size: 58px; letter-spacing: -.045em; line-height: 1.05; margin: 20px 0; font-weight: 700; }
+.directory-flagship p { font-size: 18px; }
+.directory-screen { min-width: 0; }
+.directory-screen img { width: 100%; height: auto; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 15px 35px #00000009; }
+.directory-contribution { font-size: 14px !important; margin: 24px 0; }
+.directory-contribution strong { display: block; margin-bottom: 5px; }
+.directory-project { display: grid; grid-template-columns: 1.05fr .8fr; gap: 110px; border-bottom: 1px solid #dededb; padding: 75px 0; align-items: center; }
+.directory-project h2 { font-size: clamp(32px, 3vw, 43px); line-height: 1.1; letter-spacing: -.035em; font-weight: 600; margin: 20px 0; }
+.directory-project-copy > p { font-size: 18px; }
+.research-output { background: #f4f4f2; border: 1px solid #dededb; padding: 35px; border-radius: 5px; }
+.output-value { display: block; font-size: 62px; font-weight: 500; letter-spacing: -.055em; line-height: 1.1; margin-top: 30px; }
+.research-output > p { margin: 8px 0; }
+.research-output dl { margin: 30px 0 20px; }
+.research-output dl > div { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid #d5d5d0; padding: 12px 0; font-size: 14px; }
+.research-output dd { margin: 0; text-align: right; font-weight: 600; }
+.research-output small { font-size: 11px; }
+/* Research uses its existing semantic tables, now framed as an independent publication. */
+.case-main { --container: min(1120px, calc(100% - 64px)); }
+.case-main .case-hero { padding-top: 70px; padding-bottom: 45px; }
+.case-main .case-hero h1 { font-size: clamp(42px, 5.8vw, 78px); letter-spacing: -.05em; line-height: 1.03; max-width: 1050px; }
+.case-main .case-type { font-size: 13px; margin-top: 34px; }
+.case-main .case-summary { font-size: 21px; max-width: 820px; line-height: 1.55; }
+.case-main .case-hero-facts { border-top: 1px solid #dededb; margin-top: 35px; padding-top: 25px; }
+.case-main .case-hero-facts span { font-size: 12px; }
+.case-main .case-hero-facts strong { font-size: 15px; line-height: 1.5; }
+.case-main .case-cover { border: 1px solid #dededb; border-radius: 6px; padding: 22px; }
+.case-main .research-notice { background: #f4f4f2; border: 1px solid #dededb; padding: 25px; margin-block: 30px; }
+.case-main :is(.case-role,.decision-system-panel,.feature-chart-panel,.native-pairwise-preview) { background: #f4f4f2; }
+.case-main :is(.workspace-titlebar > div strong,thead th,.pairwise-snapshot-head,.signal-data-table > div:first-child) { background: #e5e5e0 !important; }
+.case-main .case-role { padding-block: 65px; }
+.case-main .case-footer { display: flex; justify-content: space-between; gap: 25px; font-size: 15px; }
+.case-main :is(#overview,#evidence,#method,#limitations) { scroll-margin-top: 110px; }
+.case-main :is(.case-framing,.case-process,.case-decisions) { padding-block: 65px; }
+.case-main .research-visual { border-radius: 4px; }
+@media(max-width: 900px) {
+ .project-header nav { flex-wrap: wrap; gap: 14px; padding: 16px 0 0; }
+ .project-brand { font-size: 19px; }
+ .project-links { order: 3; width: 100%; justify-content: space-between; gap: 15px; font-size: 13px; }
+ .product-section { gap: 35px; }
+ .directory-flagship { grid-template-columns: 1fr; }
+ .directory-project { gap: 45px; }
+ .product-demo { padding: 35px; flex-direction: column; align-items: start; gap: 15px; }
+}
+@media(max-width: 760px) {
+ .project-header nav { width: calc(100% - 32px); }
+ .project-nav-action { font-size: 12px; padding: 9px; }
+ .product-hero { padding-top: 50px; }
+ .product-page h1,.directory-hero h1 { font-size: clamp(44px, 10vw, 65px); }
+ .product-lead { font-size: 19px; }
+ .eyebrow-label { font-size: 11px; }
+ .product-actions { gap: 12px; }
+ .product-screen { width: calc(100% - 24px); margin-bottom: 55px; }
+ .product-screen figcaption { font-size: 12px; }
+ .product-section { width: calc(100% - 40px); grid-template-columns: 1fr; gap: 25px; padding: 45px 0; scroll-margin-top: 145px; }
+ .product-section h2 { margin-bottom: 10px; }
+ .capability-list { grid-template-columns: 1fr; gap: 28px; }
+ .product-demo { width: calc(100% - 24px); padding: 28px; }
+ .product-footer { width: calc(100% - 40px); flex-direction: column; gap: 18px; }
+ .directory-content { width: calc(100% - 40px); padding-top: 130px; padding-bottom: 35px; }
+ .directory-hero { display: block; margin-bottom: 35px; }
+ .directory-hero > p:last-child { font-size: 18px; margin-top: 24px; }
+ .directory-flagship { padding: 25px; gap: 25px; }
+ .directory-flagship h2 { font-size: 46px; }
+ .directory-project { grid-template-columns: 1fr; padding: 45px 0; gap: 28px; }
+ .research-output { padding: 25px; }
+ .case-main { --container: calc(100% - 32px); }
+ .case-main .case-hero { padding-top: 38px; }
+ .case-main .case-summary { font-size: 18px; }
+ .case-main .case-cover { padding: 8px; }
+ .case-main .case-footer { flex-direction: column; }
+ .case-main :is(#overview,#evidence,#method,#limitations) { scroll-margin-top: 150px; }
+}
+@media(prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; } }
+body .sl-app.sl-app *, body .case-main.case-main * { color: #000 !important; }
+.sl-app svg { color: #000 !important; }
+.case-main { --sans: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif; }
+.case-main .back-link { margin-bottom: 20px; }
+.case-main :is(.research-notice p,.workspace-disclosure,.table-disclosure) { font-size: 14px; line-height: 1.65; }
+.case-main table :is(th,td,caption) { font-size: 12px; }
+.case-main .research-table-scroll { max-width: 100%; }
+.case-main .case-evidence { padding-top: 65px; }
+.case-main .correlation-heatmap > div:not(:first-child) > span { background: rgba(0, 0, 0, calc(var(--heat) * .16)); }
+
+.work-directory .eyebrow-label { font-size: 12px; }
+@media(max-width: 760px) {
+ .project-header nav { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px 12px; }
+ .project-brand { font-size: 17px; line-height: 1.2; }
+ .project-links { grid-column: 1 / -1; }
+}

@@ -147,10 +147,10 @@
   font-weight: 600;
 }
 .sl-sidebar nav button:hover:not(:disabled) {
-  background: #f3f6fa;
+  background: #f1f1ee;
 }
 .sl-sidebar nav button.active:hover {
-  background: #e8f0fe;
+  background: #f1f1ee;
 }
 .sl-count {
   margin-left: auto;
@@ -166,7 +166,7 @@
 .sl-project-note {
   margin: 12px 5px 24px;
   padding: 15px;
-  background: #f8f9fb;
+  background: #f1f1ee;
   border: 1px solid var(--sl-line);
   border-radius: 8px;
 }
@@ -196,7 +196,7 @@
 }
 .sl-topbar {
   height: 75px;
-  background: #ffffff;
+  background: #fff;
   border-bottom: 1px solid var(--sl-line);
   padding: 0 40px;
   display: flex;
@@ -228,10 +228,10 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #ba873b;
+  background: #f1f1ee;
 }
 .sl-connection.connected > span {
-  background: #1b966d;
+  background: #f1f1ee;
 }
 .sl-main {
   padding: 40px;
@@ -280,7 +280,7 @@
   color: white;
 }
 .sl-button:hover:not(:disabled) {
-  background: #104fba;
+  background: #f1f1ee;
   box-shadow: 0 2px 7px #145ed222;
 }
 .sl-secondary {
@@ -289,7 +289,7 @@
   color: var(--sl-ink);
 }
 .sl-secondary:hover:not(:disabled) {
-  background: #f0f4fa;
+  background: #f1f1ee;
 }
 .sl-text-button {
   display: inline-flex;
@@ -314,7 +314,7 @@
   flex-shrink: 0;
 }
 .sl-icon-button:hover {
-  background: #edf1f6;
+  background: #f1f1ee;
 }
 .sl-start-grid {
   display: grid;
@@ -327,7 +327,7 @@
   grid-template-columns: 1.2fr 1fr;
   gap: 12px;
   padding: 30px;
-  background: #eef4ff;
+  background: #f1f1ee;
   border: 1px solid #dce8fb;
   border-radius: 12px;
   min-height: 283px;
@@ -353,14 +353,14 @@
   line-height: 1.4;
   display: inline-flex;
   align-items: center;
-  background: #eff2f7;
+  background: #f1f1ee;
   color: #536276;
   padding: 5px 8px;
   border-radius: 4px;
 }
 .sl-feature .sl-tag {
   color: #3162a5;
-  background: #e0ebfc;
+  background: #f1f1ee;
   font-size: 8px;
   letter-spacing: 0.09em;
   font-weight: 650;
@@ -400,27 +400,27 @@
   margin-bottom: 13px;
 }
 .sl-avatar.blue {
-  background: #d8e6fb;
+  background: #f1f1ee;
   color: #365e9a;
 }
 .sl-avatar.amber {
-  background: #f8ead1;
+  background: #f1f1ee;
   color: #876339;
 }
 .sl-avatar.rose {
-  background: #fae2e4;
+  background: #f1f1ee;
   color: #985568;
 }
 .sl-avatar.teal {
-  background: #dbeeea;
+  background: #f1f1ee;
   color: #39776d;
 }
 .sl-avatar.violet {
-  background: #e7e1f7;
+  background: #f1f1ee;
   color: #7156a5;
 }
 .sl-avatar.slate {
-  background: #e3e9ed;
+  background: #f1f1ee;
   color: #526574;
 }
 .sl-feature-buyer > strong {
@@ -461,7 +461,7 @@
   width: 43px;
   height: 43px;
   border-radius: 11px;
-  background: #f0f4fb;
+  background: #f1f1ee;
   color: #5a76a2;
   margin-bottom: 15px;
   flex-shrink: 0;
@@ -573,15 +573,15 @@
   font-weight: 500;
   border-radius: 4px;
   padding: 3px 7px;
-  background: #f2f5f9;
+  background: #f1f1ee;
   color: #697c96;
 }
 .sl-difficulty.skeptical {
-  background: #fbf2e7;
+  background: #f1f1ee;
   color: #946732;
 }
 .sl-difficulty.warm {
-  background: #eaf4ef;
+  background: #f1f1ee;
   color: #447f62;
 }
 .sl-prospect h3 {
@@ -684,7 +684,7 @@
   gap: 10px;
   align-items: center;
   border: 1px solid #cee0f9;
-  background: #edf5ff;
+  background: #f1f1ee;
   color: #365c8a;
   padding: 12px 15px;
   margin-bottom: 20px;
@@ -696,7 +696,7 @@
 }
 .sl-error {
   border-color: #ebc8c8;
-  background: #fff1f1;
+  background: #f1f1ee;
   color: #993b3b;
 }
 .sl-dialog {
@@ -797,7 +797,7 @@
   display: flex;
   gap: 13px;
   padding: 17px;
-  background: #f0f5fc;
+  background: #f1f1ee;
   border-radius: 8px;
 }
 .sl-goal > svg {
@@ -874,7 +874,7 @@
   margin: 0;
   padding: 14px 17px;
   border-radius: 2px 12px 12px;
-  background: #f1f4f8;
+  background: #f1f1ee;
   color: #344459;
   font-size: 13px;
   white-space: pre-wrap;
@@ -887,7 +887,7 @@
   margin-right: 4px;
 }
 .sl-message.user p {
-  background: #eaf2ff;
+  background: #f1f1ee;
   color: #244f8a;
   border-radius: 12px 2px 12px 12px;
 }
@@ -941,10 +941,10 @@
   justify-content: center;
 }
 .sl-end {
-  background: #a0444c;
+  background: #f1f1ee;
 }
 .sl-end:hover:not(:disabled) {
-  background: #89323a;
+  background: #f1f1ee;
 }
 .sl-voice-controls {
   padding: 18px;
@@ -978,7 +978,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #edf4ff;
+  background: #f1f1ee;
   border-radius: 50%;
   flex-shrink: 0;
   color: var(--sl-accent);
@@ -1021,7 +1021,7 @@
   margin: 14px 0 10px;
   border-left: 2px solid #b6ccea;
   padding: 5px 14px;
-  background: #f8fafc;
+  background: #f1f1ee;
   color: #5c7090;
   font-size: 12px;
   line-height: 1.7;
@@ -1031,7 +1031,7 @@
   margin-bottom: 0;
 }
 .sl-coaching {
-  background: #edf4ff;
+  background: #f1f1ee;
   border-color: #dce7f8;
 }
 .sl-coaching h2 {
@@ -1149,7 +1149,7 @@
 .sl-chart span {
   display: block;
   width: 100%;
-  background: #90b6eb;
+  background: #f1f1ee;
   border-radius: 4px 4px 0 0;
   min-width: 10px;
 }
@@ -1172,7 +1172,7 @@
 }
 .sl-table th {
   padding: 15px 20px;
-  background: #fcfcfd;
+  background: #f1f1ee;
   font-size: 10px;
   color: var(--sl-muted);
   font-weight: 500;
@@ -1295,7 +1295,7 @@
   padding: 18px;
   border: 1px dashed #bccce3;
   border-radius: 7px;
-  background: #f7faff;
+  background: #f1f1ee;
 }
 .sl-file-input input {
   border: 0;
@@ -1684,3 +1684,16 @@
     transition: none !important;
   }
 }
+
+/* Monochrome workspace; text hierarchy comes from scale and weight. */
+.sl-app { --sl-accent: #000; --sl-ink: #000; --sl-muted: #000; --sl-line: #dededb; --sl-bg: #fafaf9; --sl-blue: #eeeeeb; }
+.sl-app :is(button,.sl-brand-mark) { background: #f1f1ee; border-color: #bdbdb8; }
+.sl-app button:hover:not(:disabled) { background: #f1f1ee; }
+.sl-app button:disabled { opacity: 1; border-style: dashed; }
+.sl-app .sl-brand-mark { border: 1px solid #dededb; border-radius: 5px; }
+.sl-app :is(.sl-nav-label,.sl-workspace-name small,.sl-brand small) { font-size: 11px; }
+.sl-app .sl-brand small { letter-spacing: .02em; }
+.sl-app .sl-sidebar nav button { font-size: 14px; background: transparent; }
+.sl-app .sl-sidebar nav button.active { background: #f1f1ee; border-left: 2px solid #000; }
+.sl-app .sl-sidebar nav button.active:hover { background: #f1f1ee; }
+.sl-app .sl-error { background: #f1f1ee; border-color: #000; }
