@@ -2683,3 +2683,15 @@ html.portfolio-intro-active { overflow: hidden; }
   .trs-formula-review { padding: 17px; }
   .trs-analysis-grid { gap: 16px; }
 }
+
+/* Sales Lab portfolio entry */
+.sales-lab-project-preview { min-height: 300px; padding: 30px; background: #f0f5fd; color: #192f51; }
+.sales-lab-preview-top { display: flex; justify-content: space-between; align-items: center; gap: 20px; font-size: 11px; color: #647b9e; }
+.sales-lab-preview-top > span:first-child { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 650; color: #1b4c90; }
+.sales-lab-preview-body { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px; margin-top: 36px; }
+.sales-lab-preview-body p { font-size: 12px; color: #6a80a1; margin: 0 0 10px; }
+.sales-lab-preview-body h3 { font-size: clamp(29px, 3vw, 42px); line-height: 1.1; letter-spacing: -.05em; margin: 0 0 23px; }
+.sales-lab-preview-body > div > span { display: flex; align-items: center; gap: 9px; font-size: 12px; color: #1763db; }
+.sales-lab-preview-steps { display: grid; gap: 20px; padding-right: 25px; }
+.sales-lab-preview-steps > span { display: flex; align-items: center; gap: 12px; font-size: 12px; color: #577296; }
+@media(max-width:640px) { .sales-lab-project-preview { padding: 24px; } .sales-lab-preview-body { grid-template-columns: 1fr; } .sales-lab-preview-steps { display: none; } .sales-lab-preview-top > span:last-child { font-size: 9px; } }

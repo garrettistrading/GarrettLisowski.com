@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 const links = [
   { href: "/#experience", label: "Experience" },
   { href: "/#work", label: "Work" },
+  { href: "/sales-lab", label: "Sales Lab" },
   { href: "/#background", label: "Background" },
   { href: "/#contact", label: "Contact" },
 ];
@@ -41,7 +42,7 @@ export function Navigation() {
         <div className="desktop-nav-links">
           {links.map((link) => (
             <Link
-              className={pathname.startsWith("/work") && link.label === "Work" ? "is-active" : ""}
+              className={(pathname.startsWith("/work") && link.label === "Work") || (pathname === "/sales-lab" && link.label === "Sales Lab") ? "is-active" : ""}
               key={link.href}
               href={link.href}
             >

@@ -6,6 +6,9 @@ import {
   EnvelopeSimple,
   GraduationCap,
   MapPin,
+  Waveform,
+  Headphones,
+  Target,
 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import Link from "next/link";
@@ -117,6 +120,16 @@ export default function Home() {
           </header>
 
           <div className="project-list">
+            <article className="project-feature sales-lab-project" data-reveal>
+              <Link className="project-card-link" href="/sales-lab" aria-label="Try Sales Lab sales training workspace">
+                <div className="project-preview sales-lab-project-preview">
+                  <div className="sales-lab-preview-top"><span><Waveform size={25} weight="bold" /> Sales Lab</span><span>Interactive project</span></div>
+                  <div className="sales-lab-preview-body"><div><p>Practice. Review. Improve.</p><h3>Make your next<br />call better.</h3><span>Explore the practice studio <ArrowUpRight size={17} /></span></div><div className="sales-lab-preview-steps"><span><Headphones size={20} /> Buyer roleplay</span><span><Target size={20} /> Call coaching</span><span><ChartLineUp size={20} /> Progress tracking</span></div></div>
+                </div>
+                <div className="project-information"><div><p className="project-type">Interactive sales training workspace</p><h3>Sales Lab</h3><p className="project-summary">A place to practice discovery, handle objections, and turn conversations into specific coaching. Explore fictional buyer scenarios and build your own scorecards.</p></div><ArrowUpRight size={24} aria-hidden="true" /></div>
+              </Link>
+              <div className="project-card-meta"><p className="project-role"><span>What I built</span>Practice workflows, scoring criteria, and a coaching workspace</p><ul className="project-proof-points"><li>6 buyer scenarios</li><li>Custom scorecards</li><li>Guided demo available</li></ul></div>
+            </article>
             {projects.map((project) => (
               <article className="project-feature" data-reveal key={project.slug}>
                 <Link className="project-card-link" href={`/work/${project.slug}`} aria-label={`View ${project.name} case study`}>
