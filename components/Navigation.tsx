@@ -1,15 +1,15 @@
 "use client";
 
-import { List, X } from "@phosphor-icons/react";
+import { EnvelopeSimple, List, X } from "@phosphor-icons/react";
 import Link from "next/link";
 import styles from "./Navigation.module.css";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const links = [
-  { href: "/work", label: "Work" },
-  { href: "/#experience", label: "Experience" },
-  { href: "/#background", label: "About" },
+  { href: "/", label: "About" },
+  { href: "/work", label: "Portfolio" },
+  { href: "/experience", label: "Experience" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -42,7 +42,7 @@ export function Navigation() {
         <div className="desktop-nav-links">
           {links.map((link) => (
             <Link
-              className={pathname.startsWith("/work") && link.label === "Work" ? "is-active" : ""}
+              className={pathname.startsWith("/work") && link.label === "Portfolio" ? "is-active" : ""}
               aria-current={pathname === link.href ? "page" : undefined}
               key={link.href}
               href={link.href}
@@ -52,8 +52,8 @@ export function Navigation() {
           ))}
         </div>
 
-        <Link className="nav-contact" href={`mailto:Garrett@GarrettLisowski.com`}>
-          Email Garrett
+        <Link className="nav-contact" href={`mailto:Garrett@GarrettLisowski.com`} aria-label="Email Garrett">
+          <EnvelopeSimple size={18} aria-hidden="true" />
         </Link>
 
         <button

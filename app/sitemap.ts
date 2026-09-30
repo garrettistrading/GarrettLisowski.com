@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     { url: `${baseUrl}/sales-lab`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/work`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/experience`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     ...projects.map((project) => ({
       url: `${baseUrl}/work/${project.slug}`,
       lastModified: new Date(),
