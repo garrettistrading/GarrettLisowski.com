@@ -25,6 +25,7 @@ export default function Home() {
           <section id="work">
             <h2>what I’m building</h2>
             <p><Link href="/sales-lab">Sales Lab</Link> is a workspace I built for practicing buyer conversations, reviewing calls, and creating custom scorecards.</p>
+            <p><Link href="/retirement-lab">Retirement Lab</Link> brings together calculators for savings growth, Social Security, and retirement withdrawals.</p>
             <p>I’ve also built research tools for comparing market signals, studying relative strength, and understanding how a hedge tracks a changing liability. You can explore them in my <Link href="/work">portfolio</Link>.</p>
           </section>
           <section id="experience">
