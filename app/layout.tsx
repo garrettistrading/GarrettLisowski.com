@@ -5,26 +5,26 @@ import "./professional.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.garrettlisowski.com"),
   title: {
-    default: "Garrett Lisowski | Sales, Research & Products",
+    default: "Garrett Lisowski | Client Relationships & Financial Analysis",
     template: "%s | Garrett Lisowski",
   },
   description:
-    "Explore Garrett Lisowski’s commercial experience, financial research, and Sales Lab training workspace.",
+    "Client-facing experience, financial analysis, and practical tools for exploring financial decisions by Garrett Lisowski.",
   authors: [{ name: "Garrett Lisowski", url: "https://www.garrettlisowski.com/" }],
   creator: "Garrett Lisowski",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Garrett Lisowski | Sales, Research & Products",
+    title: "Garrett Lisowski | Client Relationships & Financial Analysis",
     description:
-      "Commercial experience, financial research, and practical tools by Garrett Lisowski.",
+      "Client-facing experience, financial analysis, and practical tools by Garrett Lisowski.",
     type: "website",
     url: "/",
     siteName: "Garrett Lisowski",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Garrett Lisowski | Sales, Research & Products",
-    description: "Commercial experience, financial research, and practical tools by Garrett Lisowski.",
+    title: "Garrett Lisowski | Client Relationships & Financial Analysis",
+    description: "Client-facing experience, financial analysis, and practical tools by Garrett Lisowski.",
   },
 };
 
